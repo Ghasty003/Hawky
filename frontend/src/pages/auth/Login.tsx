@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom"
 import login from "../../assets/loginchat.png";
 import NavBar from '../../components/NavBar';
-import { AiOutlineUser, RiLockPasswordFill, MdOutlineAlternateEmail } from "react-icons/all";
+import { AiOutlineUser, RiLockPasswordFill } from "react-icons/all";
 
 function Login() {
     return (
