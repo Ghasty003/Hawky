@@ -11,7 +11,7 @@ function Register() {
 
             <div className='flex justify-around items-center mt-20'>
                 <div>
-                    <img className='w-[320px]' src={register} alt="register" />
+                    <img className='w-[340px]' src={register} alt="register" />
                     <p className='text-2xl'>Register with us to enjoy realtime chats like no other.</p>
                 </div>
 
