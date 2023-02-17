@@ -11,6 +11,9 @@ module.exports = {
         "empty-chat": "#9fa8da",
         navbg: "rgba(0, 0, 0, .2)",
       },
+      fontFamily: {
+        heading: "cursive",
+      },
     },
   },
   plugins: [],
