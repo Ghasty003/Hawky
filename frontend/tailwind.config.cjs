@@ -2,7 +2,15 @@
 module.exports = {
   content: ["./src/**/*{.js,.jsx,.ts,.tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        login: "rgb(255, 245, 157)",
+        register: "rgb(144, 202, 249)",
+        primary: "#251e3e",
+        secondary: "#5b5d8d",
+        "empty-chat": "#9fa8da",
+      },
+    },
   },
   plugins: [],
 };
