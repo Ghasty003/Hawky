@@ -16,7 +16,7 @@ function Login() {
                 </div>
 
                 <div className='bg-navbg text-center w-96 h-[400px] flex flex-col rounded-lg p-6'>
-                    <h2 className='text-2xl font-heading'>Register</h2>
+                    <h2 className='text-2xl font-heading'>Login</h2>
 
                     <form className='mt-6'>
                         <div className='flex items-center my-4 bg-gray-900 py-1 rounded-md'>
@@ -34,7 +34,7 @@ function Login() {
                         </button>
                     </form>
 
-                    <h3 className='mt-7'>Don't have an account? <Link className='text-register' to="/login">Register</Link></h3>
+                    <h3 className='mt-7'>Don't have an account? <Link className='text-register' to="/register">Register</Link></h3>
                 </div>
             </div>
         </>
