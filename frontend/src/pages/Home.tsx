@@ -1,9 +1,10 @@
 import React from 'react';
+import SideBar from '../components/SideBar';
 
 function Home() {
     return (
-        <div>
-            Home
+        <div className='p-10'>
+            <SideBar />
         </div>
     );
 }
