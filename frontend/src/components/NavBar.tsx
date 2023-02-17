@@ -4,7 +4,7 @@ import logo from "../assets/hawky.png";
 function NavBar() {
     return (
         <div className='flex justify-around items-center py-6 bg-navbg sticky top-0'>
-            <div className='flex items-center'>
+            <div className='flex gap-2 items-center'>
                 <img className='w-8 rounded-full object-cover' src={logo} alt="logo" />
                 <h2 className='text-2xl font-heading'>Hawky</h2>
             </div>
