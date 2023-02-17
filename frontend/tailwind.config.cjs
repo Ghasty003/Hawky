@@ -9,6 +9,7 @@ module.exports = {
         primary: "#251e3e",
         secondary: "#5b5d8d",
         "empty-chat": "#9fa8da",
+        navbg: "rgba(0, 0, 0, .2)",
       },
     },
   },
