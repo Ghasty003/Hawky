@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom"
-import register from "../../assets/registerchat.png";
+import login from "../../assets/loginchat.png";
 import NavBar from '../../components/NavBar';
 import { AiOutlineUser, RiLockPasswordFill, MdOutlineAlternateEmail } from "react-icons/all";
 
@@ -11,8 +11,8 @@ function Login() {
 
             <div className='flex justify-around items-center mt-20'>
                 <div>
-                    <img className='w-[320px]' src={register} alt="register" />
-                    <p className='text-2xl'>Register with us to enjoy realtime chats like no other.</p>
+                    <img className='w-[340px]' src={login} alt="register" />
+                    <p className='text-2xl'>Welcome back. Login your account to continue having fun.</p>
                 </div>
 
                 <div className='bg-navbg text-center w-96 h-[400px] flex flex-col rounded-lg p-6'>
