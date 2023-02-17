@@ -29,9 +29,11 @@ function Login() {
                             <input className='w-11/12 py-2 px-1 bg-gray-900' type="password" placeholder='Password' />
                         </div>
 
-                        <button className='bg-login text-gray-600 px-4 py-2 rounded-lg font-bold drop-shadow-2xl active:scale-75 duration-300'>
-                            Login
-                        </button>
+                        <div className='w-full flex items-center justify-center'>
+                            <button className='bg-login text-gray-600 px-4 py-2 rounded-lg font-bold flex items-center justify-center drop-shadow-2xl active:scale-75 duration-300'>
+                                <div className='animate-spin w-5 h-5 border-[2px] border-gray-600 rounded-full border-t-black mr-1'></div> Login
+                            </button>
+                       </div>
                     </form>
 
                     <h3 className='mt-7'>Don't have an account? <Link className='text-register' to="/register">Register</Link></h3>
