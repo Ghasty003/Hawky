@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom"
 import register from "../../assets/registerchat.png";
 import NavBar from '../../components/NavBar';
+import avatar from "../../assets/addAvatar.png";
 import { AiOutlineUser, RiLockPasswordFill, MdOutlineAlternateEmail } from "react-icons/all";
 
 function Register() {
@@ -15,7 +16,7 @@ function Register() {
                     <p className='text-2xl'>Register with us to enjoy realtime chats like no other.</p>
                 </div>
 
-                <div className='bg-navbg text-center w-96 h-[400px] flex flex-col rounded-lg p-6'>
+                <div className='bg-navbg text-center w-96 h-[470px] flex flex-col rounded-lg p-6'>
                     <h2 className='text-2xl font-heading'>Register</h2>
 
                     <form className='mt-6'>
@@ -34,8 +35,16 @@ function Register() {
                             <input className='w-11/12 py-2 px-1 bg-gray-900' type="password" placeholder='Password' />
                         </div>
 
-                        <div className='w-full flex items-center justify-center'>
-                            <button className='bg-register text-gray-600 px-4 py-2 rounded-lg font-bold flex items-center justify-center drop-shadow-2xl active:scale-75 duration-300'>
+                        <div className='my-2'>
+                            <label className='flex items-center justify-center cursor-pointer gap-2' htmlFor="image">
+                                <img className='w-10' src={avatar} alt="display picture" />
+                                <p>Add an avatar</p>
+                            </label>
+                            <input type="file" id='image' className='hidden' />
+                        </div>
+
+                        <div className='w-full flex items-center justify-center mt-6'>
+                            <button className='bg-register text-gray-600 px-6 py-2 rounded-lg font-bold flex items-center justify-center drop-shadow-2xl active:scale-75 duration-300'>
                                 <div className='animate-spin w-5 h-5 border-[2px] border-gray-600 rounded-full border-t-black mr-1'></div> Register
                             </button>
                        </div>
