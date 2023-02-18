@@ -27,7 +27,7 @@ export async function Login(req: Request, res: Response) {
         const user = await User.login(email, password, userName);
         const token = createToken(user._id);
 
-        res.status(200).json({ user, token })
+        res.status(200).json({ displayPicture: user.displayPicture, token, email, password, userName })
     } catch (error) {
         res.status(400).json({error: (error as Error).message});
     }
