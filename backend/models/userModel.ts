@@ -48,4 +48,26 @@ userSchema.statics.signup = async function (email: string, password: string, use
     return user;
 }
 
+userSchema.statics.login = async function (email: string, password: string, userName: string) {
+    if ((!email && !userName) || !password) {
+        throw new Error("All fields are required");
+    }
+
+    const user = await this.findOne({ $or: [ { email }, { userName}]});
+
+    if (!user) {
+        throw new Error("Incorrect email or username");
+    }
+
+    if (password !== user.password) {
+        throw new Error("Password is incorrect");
+    }
+
+    if (password.length < 6) {
+        throw new Error("Password must be greater than six characters");
+    }
+
+    return user;
+}
+
 export default mongoose.model<UserProps, UserModel>("users", userSchema);

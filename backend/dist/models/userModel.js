@@ -65,4 +65,22 @@ userSchema.statics.signup = function (email, password, userName) {
         return user;
     });
 };
+userSchema.statics.login = function (email, password, userName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if ((!email && !userName) || !password) {
+            throw new Error("All fields are required");
+        }
+        const user = yield this.findOne({ $or: [{ email }, { userName }] });
+        if (!user) {
+            throw new Error("Incorrect email or username");
+        }
+        if (password !== user.password) {
+            throw new Error("Password is incorrect");
+        }
+        if (password.length < 6) {
+            throw new Error("Password must be greater than six characters");
+        }
+        return user;
+    });
+};
 exports.default = mongoose_1.default.model("users", userSchema);
