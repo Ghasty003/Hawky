@@ -24,7 +24,7 @@ const authReducer: Reducer<AuthReducerStateProp, AuthActionProp> = (state, actio
 
 
 const initialState: AuthReducerStateProp = {
-    user: null
+    user: null!
 }
 
 
