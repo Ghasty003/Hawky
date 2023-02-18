@@ -19,7 +19,11 @@ function ChatBox() {
                 </div>
             </div>
 
-            <div className='h-[78%] bg-empty-chat relative z-10 py-3'>
+            <div className='h-[78%] bg-empty-chat relative z-10 py-3 overflow-hidden'>
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
                 <Messages />
             </div>
 
