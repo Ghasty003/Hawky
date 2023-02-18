@@ -19,7 +19,7 @@ function ChatBox() {
                 </div>
             </div>
 
-            <div className='custom-height bg-empty-chat py-2 overflow-auto'>
+            <div className='custom-height bg-empty-chat overflow-auto'>
                 <Messages />
                 <Messages />
                 <Messages />
