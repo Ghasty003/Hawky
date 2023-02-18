@@ -1,5 +1,3 @@
-import videocall from "../assets/cam.png";
-import more from "../assets/more.png";
 import Header from "./Header";
 import Input from "./Input";
 import Messages from './Messages';
