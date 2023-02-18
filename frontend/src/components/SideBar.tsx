@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
@@ -7,6 +7,7 @@ import { Type, User } from '../types';
 
 function SideBar() {
 
+    const [display, setDisplay] = useState(false);
     const { dispatch, state } = useContext(AuthContext);
 
     const { user } = state;
@@ -20,6 +21,25 @@ function SideBar() {
         localStorage.removeItem("user");
     }
 
+    const handleDelete =  () => {
+        setDisplay(true);
+    }
+
+    const deleteAccount = async () => {
+        const res = await fetch("http://localhost:3000/api/user/delete/" + currentUser.id, {
+            method: "DELETE"
+        });
+
+        if (!res.ok) {
+            console.log("Cannot delete account");
+        }
+        
+        if (res.ok) {
+            localStorage.removeItem("user");
+            dispatch({type: Type.LOGOUT, payload: {}});
+        }
+    }
+
     return (
         <div className='flex items-start'>
             <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
@@ -27,6 +47,19 @@ function SideBar() {
                     <img className='w-10 rounded-full object-cover' src={isEmpty ? avatar : currentUser.displayPicture} alt="" />
                     <p>{ (user as User).userName }</p>
                 </div>
+
+                {
+                    display && (
+                        <div className='fixed left-1/2 -translate-x-1/2 z-10 bg-primary px-6 py-4 rounded-md fill'>
+                            <p className='text-lg'>Are you sure you want to delete account?</p>
+                            
+                            <div className='flex items-center justify-end gap-4 mt-3 p-2'>
+                                <button onClick={deleteAccount}>Yes</button>
+                                <button onClick={() => setDisplay(false)}>Cancel</button>
+                            </div>
+                        </div>
+                    )
+                }
                 
                 <div className='mt-10'>
                     <div className='flex items-center gap-2 mb-10 cursor-pointer'>
@@ -37,7 +70,7 @@ function SideBar() {
                         <RiUserSettingsLine size={25} />
                         <p>Settings</p>
                     </div>
-                    <div className='flex items-center gap-2 mb-10 cursor-pointer'>
+                    <div onClick={handleDelete} className='flex items-center gap-2 mb-10 cursor-pointer'>
                         <AiOutlineDelete size={25} />
                         <p>Delete account</p>
                     </div>
