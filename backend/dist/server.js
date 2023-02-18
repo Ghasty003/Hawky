@@ -27,7 +27,7 @@ class Server {
         this.app.use((0, cors_1.default)());
     }
     initializeRoutes() {
-        this.app.use(userRoute_1.default);
+        this.app.use("/api/user", userRoute_1.default);
     }
     listen() {
         this.app.listen(process.env.PORT, () => {

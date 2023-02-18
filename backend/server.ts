@@ -21,7 +21,7 @@ class Server {
     }
 
     public initializeRoutes() {
-        this.app.use(userRoute);
+        this.app.use("/api/user", userRoute);
     }
 
     private listen() {
