@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
-import { BsEmojiSmile } from "react-icons/all";
 import videocall from "../assets/cam.png";
 import more from "../assets/more.png";
-import img from "../assets/img.png";
 import Messages from './Messages';
-import InputEmoji from "react-input-emoji";
 
 
 function ChatBox() {
-    const [m, setM] = useState("");
-    const handle = (m: any) => {
-        setM(m)
-    }
+
     return (
         <div className='w-[50%] relative'>
             <div className='bg-[#3e3c61] flex justify-between items-center h-10 px-2'>
