@@ -5,7 +5,7 @@ import SideBar from '../components/SideBar';
 function Home() {
     return (
         <div className='flex justify-center items-center h-screen'>
-            <div className='flex w-[90%]'>
+            <div className='flex w-[90%] h-[500px]'>
                 <SideBar />
                 <ChatBox />
             </div>
