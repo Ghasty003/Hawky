@@ -16,15 +16,18 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const userRoute_1 = __importDefault(require("./routes/userRoute"));
 dotenv_1.default.config();
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
     }
     useMiddleWares() {
+        this.app.use(express_1.default.json({ limit: "50mb" }));
         this.app.use((0, cors_1.default)());
     }
     initializeRoutes() {
+        this.app.use(userRoute_1.default);
     }
     listen() {
         this.app.listen(process.env.PORT, () => {
