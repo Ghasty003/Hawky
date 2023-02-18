@@ -5,6 +5,7 @@ import videochat from "../assets/video-chat.jpg";
 import groupchat from "../assets/groupchat.jpg";
 import chat from "../assets/chat.jpg";
 import audiochat from "../assets/audiochat.jpg";
+import { DivProps } from '../types';
 
 function Div({headingText, text, img}: DivProps) {
     return (
