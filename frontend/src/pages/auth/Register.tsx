@@ -67,7 +67,7 @@ function Register() {
         if (res.ok) {
             setLoading(false);
             dispatch({type: Type.LOGIN, payload: json});
-            localStorage.setItem("user", json);
+            localStorage.setItem("user", JSON.stringify(json));
         }
     }
 
