@@ -13,7 +13,7 @@ export async function signUp(req: Request, res: Response) {
     try {
         const user = await User.signup(email, password, userName);
         const token = createToken(user._id);
-        res.status(200).json({user, token});
+        res.status(200).json({user,token});
     } catch (error) {
         res.status(400).json({error: (error as Error).message});
     }
