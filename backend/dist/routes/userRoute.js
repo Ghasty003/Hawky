@@ -8,4 +8,5 @@ const userController_1 = require("../controllers/userController");
 const router = express_1.default.Router();
 router.post("/signup", userController_1.signUp);
 router.post("/login", userController_1.Login);
+router.delete("/:id", userController_1.deleteAccount);
 exports.default = router;
