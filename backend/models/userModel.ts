@@ -1,4 +1,14 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
+
+interface UserProps {
+    email: string;
+    password: string;
+    userName: string;
+}
+
+interface UserModel extends Model<UserProps> {
+    signup(email: string, password: string, userName: string): any;
+}
 
 const userSchema = new Schema({
     email: {
@@ -34,4 +44,4 @@ userSchema.statics.signup = async function (email: string, password: string, use
     return user;
 }
 
-export default mongoose.model("users", userSchema);
+export default mongoose.model<UserProps, UserModel>("users", userSchema);
