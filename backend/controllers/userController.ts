@@ -8,10 +8,10 @@ function createToken(_id: string) {
 
 
 export async function signUp(req: Request, res: Response) {
-    const { email, password, userName } = req.body;
+    const { email, password, userName, displayPicture } = req.body;
 
     try {
-        const user = await User.signup(email, password, userName);
+        const user = await User.signup(email, password, userName, displayPicture);
         const token = createToken(user._id);
         res.status(200).json({user, token});
     } catch (error) {
