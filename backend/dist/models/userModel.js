@@ -57,9 +57,13 @@ userSchema.statics.signup = function (email, password, userName) {
         if (!email || !password || !userName) {
             throw new Error("All fields are required");
         }
-        const exists = yield this.findOne({ $or: [{ email }, { userName }] });
+        const exists = yield this.findOne({ email });
         if (exists) {
             throw new Error("User already exists");
+        }
+        const username = yield this.findOne({ userName });
+        if (username) {
+            throw new Error("Username is already in use");
         }
         if (password.length < 6) {
             throw new Error("Password must be greater than six characters");

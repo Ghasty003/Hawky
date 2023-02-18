@@ -38,10 +38,16 @@ userSchema.statics.signup = async function (email: string, password: string, use
         throw new Error("All fields are required");
     }
 
-    const exists = await this.findOne({ $or: [{email}, {userName}] });
+    const exists = await this.findOne({ email });
 
     if (exists) {
         throw new Error("User already exists")
+    }
+
+    const username = await this.findOne({ userName });
+
+    if (username) {
+        throw new Error("Username is already in use");
     }
 
     if (password.length < 6) {
