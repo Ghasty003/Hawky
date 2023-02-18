@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
+import AuthContext from '../contexts/AuthContext';
+import { Type } from '../types';
 
 function SideBar() {
+
+    const { dispatch } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        dispatch({type: Type.LOGOUT, payload: {}});
+        localStorage.removeItem("user");
+    }
+
     return (
         <div className='flex items-start'>
             <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
@@ -25,7 +35,7 @@ function SideBar() {
                         <AiOutlineDelete size={25} />
                         <p>Delete account</p>
                     </div>
-                    <div className='flex items-center gap-2 mb-10 cursor-pointer'>
+                    <div onClick={handleLogout} className='flex items-center gap-2 mb-10 cursor-pointer'>
                         <HiOutlineLogout size={25} />
                         <p>Logout</p>
                     </div>
