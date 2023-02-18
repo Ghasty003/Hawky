@@ -20,9 +20,9 @@ function createToken(_id) {
 }
 function signUp(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { email, password, userName } = req.body;
+        const { email, password, userName, displayPicture } = req.body;
         try {
-            const user = yield userModel_1.default.signup(email, password, userName);
+            const user = yield userModel_1.default.signup(email, password, userName, displayPicture);
             const token = createToken(user._id);
             res.status(200).json({ user, token });
         }
