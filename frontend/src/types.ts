@@ -10,8 +10,16 @@ export interface ProviderProp {
     children: React.ReactNode;
 }
 
+export interface User {
+    displayPicture: string;
+    userName: string;
+    password: string;
+    token: string;
+    email: string;
+}
+
 export interface AuthReducerStateProp {
-    user: object | null;
+    user: User | unknown;
 }
 
 export enum Type {
