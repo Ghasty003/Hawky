@@ -1,5 +1,5 @@
 import { createContext, useReducer, Reducer } from "react";
-import { AuthActionProp, AuthContextType, AuthReducerStateProp, ProviderProp, Type } from "..";
+import { AuthActionProp, AuthContextType, AuthReducerStateProp, ProviderProp, Type } from "../types";
 
 
 const AuthContext = createContext<AuthContextType>(null!);
