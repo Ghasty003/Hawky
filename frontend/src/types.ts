@@ -16,6 +16,7 @@ export interface User {
     password: string;
     token: string;
     email: string;
+    id: string;
 }
 
 export interface AuthReducerStateProp {
