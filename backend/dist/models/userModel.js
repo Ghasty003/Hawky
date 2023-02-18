@@ -52,7 +52,7 @@ const userSchema = new mongoose_1.Schema({
         type: String
     }
 });
-userSchema.statics.signup = function (email, password, userName) {
+userSchema.statics.signup = function (email, password, userName, displayPicture) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!email || !password || !userName) {
             throw new Error("All fields are required");
@@ -68,7 +68,7 @@ userSchema.statics.signup = function (email, password, userName) {
         if (password.length < 6) {
             throw new Error("Password must be greater than six characters");
         }
-        const user = yield this.create({ email, password, userName });
+        const user = yield this.create({ email, password, userName, displayPicture });
         return user;
     });
 };
