@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
 import AuthContext from '../contexts/AuthContext';
-import { Type } from '../types';
+import { Type, User } from '../types';
 
 function SideBar() {
 
-    const { dispatch } = useContext(AuthContext);
+    const { dispatch, state } = useContext(AuthContext);
+
+    const { user } = state;
 
     const handleLogout = () => {
         dispatch({type: Type.LOGOUT, payload: {}});
@@ -17,9 +19,9 @@ function SideBar() {
     return (
         <div className='flex items-start'>
             <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
-                <div className='flex items-center gap-2'>
-                    <img className='w-10 rounded-full object-cover' src={avatar} alt="" />
-                    <p>username</p>
+                <div className='flex items-center gap-1'>
+                    <img className='w-10 rounded-full object-cover' src={(user as User).displayPicture} alt="" />
+                    <p>{ (user as User).userName }</p>
                 </div>
                 
                 <div className='mt-10'>
