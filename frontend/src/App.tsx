@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 import AuthContext from "./contexts/AuthContext"
 import Login from "./pages/auth/Login"
 import Register from "./pages/auth/Register"
@@ -15,10 +15,10 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/home" element={ user ? <Home /> : <Navigate to="/login" /> } />
-        <Route path="/" element={!user ? <LandingPage /> : <Navigate to="/" /> } />
-        <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
-        <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+        <Route path="/home" element={user ? <Home /> : <Navigate to="/login" /> } />
+        <Route path="/" element={!user ? <LandingPage /> : <Navigate to="/home" />} />
+        <Route path="/register" element={!user ? <Register /> : <Navigate to="/home" />} />
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/home" />} />
       </Routes>
     </div>
   )
