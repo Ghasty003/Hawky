@@ -18,3 +18,14 @@ body {
 .not-owner {
     @apply rounded-tr-lg;
 }
+
+.fill {
+    animation: drop 1s;
+    box-shadow: 0 0 10px 1000px rgba(0, 0, 0, .6);
+}
+
+@keyframes drop {
+    from {
+        transform: translateY(-100px);
+    }
+}
