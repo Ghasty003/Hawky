@@ -10,3 +10,11 @@ body {
 .custom-height {
     height: calc(100% - 96px);
 }
+
+.owner {
+    @apply rounded-tl-lg flex justify-end;
+}
+
+.not-owner {
+    @apply rounded-tr-lg;
+}
