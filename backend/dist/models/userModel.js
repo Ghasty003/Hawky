@@ -61,6 +61,9 @@ userSchema.statics.signup = function (email, password, userName) {
         if (exists) {
             throw new Error("User already exists");
         }
+        if (password.length < 6) {
+            throw new Error("Password must be greater than six characters");
+        }
         const user = yield this.create({ email, password, userName });
         return user;
     });
@@ -76,9 +79,6 @@ userSchema.statics.login = function (email, password, userName) {
         }
         if (password !== user.password) {
             throw new Error("Password is incorrect");
-        }
-        if (password.length < 6) {
-            throw new Error("Password must be greater than six characters");
         }
         return user;
     });

@@ -44,6 +44,10 @@ userSchema.statics.signup = async function (email: string, password: string, use
         throw new Error("User already exists")
     }
 
+    if (password.length < 6) {
+        throw new Error("Password must be greater than six characters");
+    }
+
     const user = await this.create({email, password, userName});
     
     return user;
@@ -62,10 +66,6 @@ userSchema.statics.login = async function (email: string, password: string, user
 
     if (password !== user.password) {
         throw new Error("Password is incorrect");
-    }
-
-    if (password.length < 6) {
-        throw new Error("Password must be greater than six characters");
     }
 
     return user;
