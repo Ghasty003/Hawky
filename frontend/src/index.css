@@ -6,3 +6,7 @@ body {
     @apply bg-primary text-white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.custom-height {
+    height: calc(100% - 96px);
+}
