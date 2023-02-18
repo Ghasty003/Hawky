@@ -1,5 +1,6 @@
 import videocall from "../assets/cam.png";
 import more from "../assets/more.png";
+import Input from "./Input";
 import Messages from './Messages';
 
 
@@ -31,6 +32,8 @@ function ChatBox() {
                 <Messages />
                 <Messages />
             </div>
+
+            <Input />
         </div>
     );
 }
