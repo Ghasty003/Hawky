@@ -9,6 +9,7 @@ interface UserProps {
 
 interface UserModel extends Model<UserProps> {
     signup(email: string, password: string, userName: string): any;
+    login(email: string, password: string, userName: string): any;
 }
 
 const userSchema = new Schema({
