@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Login = exports.signUp = void 0;
+exports.deleteAccount = exports.Login = exports.signUp = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userModel_1 = __importDefault(require("../models/userModel"));
 function createToken(_id) {
@@ -46,3 +46,16 @@ function Login(req, res) {
     });
 }
 exports.Login = Login;
+function deleteAccount(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const user = yield userModel_1.default.findOneAndDelete({ _id: id });
+            res.status(200).json(user);
+        }
+        catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    });
+}
+exports.deleteAccount = deleteAccount;

@@ -32,3 +32,15 @@ export async function Login(req: Request, res: Response) {
         res.status(400).json({error: (error as Error).message});
     }
 }
+
+
+export async function deleteAccount(req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+        const user = await User.findOneAndDelete({ _id: id});
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(400).json({error: (error as Error).message});
+    }
+}
