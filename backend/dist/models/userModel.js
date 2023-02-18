@@ -47,6 +47,9 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         unique: true,
         required: true
+    },
+    displayPicture: {
+        type: String
     }
 });
 userSchema.statics.signup = function (email, password, userName) {

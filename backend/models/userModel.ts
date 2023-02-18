@@ -4,6 +4,7 @@ interface UserProps {
     email: string;
     password: string;
     userName: string;
+    displayPicture: string;
 }
 
 interface UserModel extends Model<UserProps> {
@@ -24,6 +25,9 @@ const userSchema = new Schema({
         type: String,
         unique: true,
         required: true
+    },
+    displayPicture: {
+        type: String
     }
 });
 
