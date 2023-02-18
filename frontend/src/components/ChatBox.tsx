@@ -9,17 +9,24 @@ import Messages from './Messages';
 function ChatBox() {
     return (
         <div className='w-[50%] relative'>
-            <div className='bg-[#3e3c61] flex justify-between items-center py-3 px-2'>
+            <div className='bg-[#3e3c61] flex justify-between items-center h-10 px-2'>
                 <p>Username</p>
 
                 <div className='flex items-center'>
                     <img className='w-7' src={videocall} alt="" />
                     <img className='w-7' src={more} alt="" />
-                    {/* <img src="" alt="" /> */}
+                    <img src="" alt="" />
                 </div>
             </div>
 
-            <div className='h-[78%] bg-empty-chat relative z-10 py-3 overflow-hidden'>
+            <div className='custom-height bg-empty-chat py-2 overflow-auto'>
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
+                <Messages />
                 <Messages />
                 <Messages />
                 <Messages />
@@ -27,7 +34,7 @@ function ChatBox() {
                 <Messages />
             </div>
 
-            <form className='flex bg-white items-center h-[12%] w-full absolute z-0 bottom-0'>
+            <form className='flex bg-white items-center h-14 w-full'>
                 <input type="text" placeholder='Type your message...' className='w-[75%] outline-none px-3 h-full text-black' />
                 <div className='flex items-center justify-between w-[25%]'>
                     <img src={img} alt="image" />
