@@ -8,7 +8,7 @@ interface UserProps {
 }
 
 interface UserModel extends Model<UserProps> {
-    signup(email: string, password: string, userName: string): any;
+    signup(email: string, password: string, userName: string, displayPicture: string): any;
     login(email: string, password: string, userName: string): any;
 }
 
@@ -33,7 +33,7 @@ const userSchema = new Schema({
 });
 
 
-userSchema.statics.signup = async function (email: string, password: string, userName: string) {
+userSchema.statics.signup = async function (email: string, password: string, userName: string, displayPicture: string) {
     if (!email || !password || !userName) {
         throw new Error("All fields are required");
     }
@@ -54,7 +54,7 @@ userSchema.statics.signup = async function (email: string, password: string, use
         throw new Error("Password must be greater than six characters");
     }
 
-    const user = await this.create({email, password, userName});
+    const user = await this.create({email, password, userName, displayPicture});
     
     return user;
 }
