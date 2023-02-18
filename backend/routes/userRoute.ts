@@ -8,6 +8,6 @@ router.post("/signup", signUp);
 
 router.post("/login", Login);
 
-router.delete("/:id", deleteAccount);
+router.delete("/delete/:id", deleteAccount);
 
 export default router;
