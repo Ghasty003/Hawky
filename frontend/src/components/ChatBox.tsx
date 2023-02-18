@@ -3,6 +3,7 @@ import { BsEmojiSmile } from "react-icons/all";
 import videocall from "../assets/cam.png";
 import more from "../assets/more.png";
 import img from "../assets/img.png";
+import Messages from './Messages';
 
 
 function ChatBox() {
@@ -19,7 +20,7 @@ function ChatBox() {
             </div>
 
             <div className='h-[78%] bg-empty-chat relative z-10'>
-                Hi
+                <Messages />
             </div>
 
             <form className='flex bg-white items-center h-[12%] w-full absolute z-0 bottom-0'>
