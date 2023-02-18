@@ -18,3 +18,17 @@ export async function signUp(req: Request, res: Response) {
         res.status(400).json({error: (error as Error).message});
     }
 }
+
+
+export async function Login(req: Request, res: Response) {
+    const { email, password, userName } = req.body;
+
+    try {
+        const user = await User.login(email, password, userName);
+        const token = createToken(user._id);
+
+        res.status(200).json({ user, token })
+    } catch (error) {
+        res.status(400).json({error: (error as Error).message});
+    }
+}
