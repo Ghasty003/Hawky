@@ -18,11 +18,11 @@ function ChatBox() {
                 </div>
             </div>
 
-            <div className='h-[90%] bg-empty-chat'>
+            <div className='h-[78%] bg-empty-chat relative z-10'>
                 Hi
             </div>
 
-            <form className='flex bg-white items-center h-[12%] w-full absolute bottom-0'>
+            <form className='flex bg-white items-center h-[12%] w-full absolute z-0 bottom-0'>
                 <input type="text" placeholder='Type your message...' className='w-[75%] outline-none px-3 h-full text-black' />
                 <div className='flex items-center justify-between w-[25%]'>
                     <img src={img} alt="image" />
