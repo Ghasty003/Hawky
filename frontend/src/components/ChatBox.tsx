@@ -8,7 +8,7 @@ import img from "../assets/img.png";
 function ChatBox() {
     return (
         <div className='w-[50%] relative'>
-            <div className='bg-[#3e3c61] flex justify-between items-center'>
+            <div className='bg-[#3e3c61] flex justify-between items-center py-3 px-2'>
                 <p>Username</p>
 
                 <div className='flex items-center'>
