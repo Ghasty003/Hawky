@@ -32,7 +32,7 @@ export async function addFriend(req: Request | any, res: Response) {
         const isSelf = uId.toString() === userId;
 
         if (isSelf) {
-            return res.status(400).json({error: "You can't add yourself."});
+            // return res.status(400).json({error: "You can't add yourself."});
         }
 
         const f = await friend.save();
