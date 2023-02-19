@@ -10,6 +10,8 @@ function SideBar() {
     const [display, setDisplay] = useState(false);
     const { dispatch, state } = useContext(AuthContext);
 
+    const [text, setText] = useState("");
+    const [err, setErr] = useState("");
     const [friend, setFriend] = useState<User>(null!);
 
     const isFriendPictureEmpty = friend?.displayPicture === "";
@@ -59,11 +61,15 @@ function SideBar() {
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:3000/api/user/" + currentUser.userName);
+        const res = await fetch("http://localhost:3000/api/user/" + text);
         const json = await res.json();
 
         if (!res.ok) {
-            console.log(json.error);
+            setErr(json.error);
+
+            setTimeout(() => {
+                setErr("");
+            }, 3000);
         }
 
         if (res.ok) {
@@ -122,10 +128,14 @@ function SideBar() {
                         <div className='flex items-center gap-1 my-2 cursor-pointer'>
                             <img className='w-10 rounded-full object-cover' src={isFriendPictureEmpty ? avatar : friend?.displayPicture} alt="" />
                             <p>{ friend?.userName }</p>
-                         </div>
+                        </div>
+
+                        {
+                            err && <div>{ err }</div>
+                        }
                         
                         <div className='bg-primary p-3 rounded-2xl'>
-                            <input type="text" placeholder='Type their username' className='outline-none bg-transparent border-none' />
+                            <input value={text} onChange={e => setText(e.target.value)} type="text" placeholder='Type their username' className='outline-none bg-transparent border-none' />
                             <button className='bg-secondary text-center rounded-lg p-1 active:scale-90 duration-300'>
                                 <FcSearch size={20} className='inline' />Search
                             </button>
