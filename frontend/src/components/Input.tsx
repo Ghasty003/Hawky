@@ -56,13 +56,7 @@ function Input() {
         }
     }
 
-    useEffect(() => {
-        socket.current.on("receive-message", data => {
-            setMessages(prev => (
-                [...prev, data]
-            ))
-        })
-    }, []);
+    
 
     return (
         <form onSubmit={handleSend} className='flex bg-white items-center h-14 w-full'>

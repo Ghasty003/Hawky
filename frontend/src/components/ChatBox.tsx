@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import MessageContext from "../contexts/MessageContext";
+import SocketContext from "../contexts/SocketContext";
 import Header from "./Header";
 import Input from "./Input";
 import Messages from './Messages';
@@ -7,7 +8,16 @@ import Messages from './Messages';
 
 function ChatBox() {
 
-    const { messages } = useContext(MessageContext);
+    const { messages, setMessages } = useContext(MessageContext);
+    const { socket } = useContext(SocketContext);
+
+    useEffect(() => {
+        socket.current.on("receive-message", data => {
+            setMessages(prev => (
+                [...prev, data]
+            ))
+        })
+    }, []);
 
     return (
         <div className='w-[50%] relative'>

@@ -58,8 +58,6 @@ class Connection {
                 const user = this.activeUsers.find(user => user.userId === receiverId);
                 if (user) {
                     this.io.to(user.socketId).emit("receive-message", data);
-                    console.log(user);
-                    console.log(data);
                 }
             });
             socket.on("disconnect", () => {

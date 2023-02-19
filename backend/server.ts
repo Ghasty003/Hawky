@@ -63,8 +63,6 @@ class Connection {
                 
                 if (user) {
                     this.io.to(user.socketId).emit("receive-message", data);
-                    console.log(user);
-                    console.log(data)
                 }
             })
 
