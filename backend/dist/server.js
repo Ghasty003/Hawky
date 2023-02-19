@@ -17,6 +17,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
+const userFriendRoute_1 = __importDefault(require("./routes/userFriendRoute"));
 dotenv_1.default.config();
 class Server {
     constructor() {
@@ -28,6 +29,7 @@ class Server {
     }
     initializeRoutes() {
         this.app.use("/api/user", userRoute_1.default);
+        this.app.use("/api/friend", userFriendRoute_1.default);
     }
     listen() {
         this.app.listen(process.env.PORT, () => {

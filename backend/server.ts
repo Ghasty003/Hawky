@@ -4,6 +4,7 @@ import dotevn from "dotenv";
 import cors from "cors";
 
 import userRoute from "./routes/userRoute";
+import userFriendRoute from "./routes/userFriendRoute";
 
 dotevn.config();
 
@@ -22,6 +23,7 @@ class Server {
 
     public initializeRoutes() {
         this.app.use("/api/user", userRoute);
+        this.app.use("/api/friend", userFriendRoute);
     }
 
     private listen() {
