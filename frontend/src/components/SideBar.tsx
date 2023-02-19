@@ -60,6 +60,7 @@ function SideBar() {
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
+        setText("");
 
         const res = await fetch("http://localhost:3000/api/user/" + text);
         const json = await res.json();
