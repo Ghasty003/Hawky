@@ -48,7 +48,6 @@ function Input() {
         if (res.ok) {
             console.log(json);
             setText("");
-        // setMessage("");
         // socket.current.emit("send-message", json);
         // setMessages(prev => [...prev, json])
         }
