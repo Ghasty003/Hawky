@@ -54,7 +54,9 @@ class Connection {
                 }
             });
             socket.on("send-message", data => {
-                console.log(data);
+                const { receiverId } = data;
+                const user = this.activeUsers.find(user => user.userId === receiverId);
+                this.io.to(user === null || user === void 0 ? void 0 : user.socketId).emit("receive-message", data);
             });
             socket.on("disconnect", () => {
                 this.activeUsers = this.activeUsers.filter(user => user.socketId !== socket.id);
