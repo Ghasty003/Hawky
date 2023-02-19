@@ -15,7 +15,6 @@ export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
     const [onlineUser, setOnlineUser] = useState([]);
 
     const { state } = useContext(AuthContext);
-    const { setMessages } = useContext(MessageContext);
 
     const { user } = state;
     const currentUser = user as User;
