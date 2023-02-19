@@ -51,8 +51,8 @@ class Connection {
                         socketId: socket.id
                     });
                 }
+                console.log(this.activeUsers);
             });
-            console.log(this.activeUsers);
         });
     }
     listen() {

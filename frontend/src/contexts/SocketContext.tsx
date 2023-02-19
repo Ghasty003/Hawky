@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useRef, useContext } from "react";
 import { io, Socket } from "socket.io-client";
-import { ProviderProp } from "../types";
+import { ProviderProp, User } from "../types";
 import AuthContext from "./AuthContext";
 
 interface test {
@@ -15,13 +15,17 @@ export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
     const socket = useRef<Socket>(null!);
 
     const { state } = useContext(AuthContext);
+    const { user } = state;
+    const currentUser = user as User;
 
     const test = "Hello world";
     console.log(test);
 
     useEffect(() => {
         socket.current = io("http://localhost:3000");
-    }, [state.user]);
+        socket.current.emit("add-new-user", currentUser?.id);
+    }, [currentUser]);
+
 
     return (
         <SocketContext.Provider value={{test}}>
