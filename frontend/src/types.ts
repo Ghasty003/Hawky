@@ -20,6 +20,13 @@ export interface User {
     id: string;
 }
 
+export interface Friend extends User {
+    friendId: string;
+    friendUsername: string;
+    friendImage: string;
+    userId: string;
+}
+
 export interface AuthReducerStateProp {
     user: User | unknown;
 }
