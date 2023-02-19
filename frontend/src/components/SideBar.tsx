@@ -101,11 +101,16 @@ function SideBar() {
         const json = await res.json();
 
         if (!res.ok) {
-            console.log(json.error);
+            setFriend(null!);
+            setErr(json.error);
+
+            setTimeout(() => {
+                setErr("");
+            }, 3000);
         }
 
         if (res.ok) {
-            console.log(json);
+           setFriend(null!);
         }
     }
 
