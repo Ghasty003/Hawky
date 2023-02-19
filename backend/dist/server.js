@@ -53,6 +53,9 @@ class Connection {
                     console.log(this.activeUsers);
                 }
             });
+            socket.on("disconnect", () => {
+                this.activeUsers = this.activeUsers.filter(user => user.socketId !== socket.id);
+            });
         });
     }
     listen() {
