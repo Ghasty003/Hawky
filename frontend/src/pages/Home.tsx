@@ -43,7 +43,7 @@ function Home() {
         <div className='flex justify-center items-center h-screen'>
             <div className='flex w-[90%] h-[500px]'>
                 <SideBar />
-                <ChatBox socket={socket} />
+                <ChatBox onlineUser={onlineUser} socket={socket} />
             </div>
         </div>
     );
