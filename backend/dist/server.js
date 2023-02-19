@@ -18,10 +18,10 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
 const userFriendRoute_1 = __importDefault(require("./routes/userFriendRoute"));
-dotenv_1.default.config();
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
+        dotenv_1.default.config();
     }
     useMiddleWares() {
         this.app.use(express_1.default.json({ limit: "50mb" }));

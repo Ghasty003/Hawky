@@ -6,14 +6,13 @@ import cors from "cors";
 import userRoute from "./routes/userRoute";
 import userFriendRoute from "./routes/userFriendRoute";
 
-dotevn.config();
-
 
 class Server {
     private app: Application;
 
     public constructor() {
         this.app = express();
+        dotevn.config();
     }
 
     public useMiddleWares() {
