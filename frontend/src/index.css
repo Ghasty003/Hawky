@@ -12,7 +12,7 @@ body {
 }
 
 .owner {
-    @apply rounded-t-lg flex justify-end;
+    @apply rounded-tl-lg flex justify-end;
 }
 
 .not-owner {

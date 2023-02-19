@@ -13,7 +13,7 @@ function Messages({ message }: {message: MessagesProp}) {
 
     return (
         <div className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
-            <div className={`bg-[#3e3c61] w-fit p-1 max-w-[200px] rounded-b-lg`}>
+            <div className={`${isOwner ? "owner" : "not-owner"} bg-[#3e3c61] w-fit p-1 max-w-[200px] rounded-b-lg`}>
                 { message.text }
             </div>
         </div>
