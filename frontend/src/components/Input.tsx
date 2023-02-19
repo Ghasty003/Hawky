@@ -3,6 +3,7 @@ import InputEmoji from "react-input-emoji";
 import img from "../assets/img.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
+import MessageContext from '../contexts/MessageContext';
 import { User } from '../types';
 
 function Input() {
@@ -11,6 +12,7 @@ function Input() {
 
     const { state } = useContext(AuthContext);
     const { chat } = useContext(ChatContext);
+    const { setMessages } = useContext(MessageContext);
 
     const { user } = state;
     const currentUser = user as User;
@@ -49,7 +51,7 @@ function Input() {
             console.log(json);
             setText("");
         // socket.current.emit("send-message", json);
-        // setMessages(prev => [...prev, json])
+        setMessages(prev => [...prev, json])
         }
     }
 
