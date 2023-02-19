@@ -43,9 +43,13 @@ export async function getFriends(req: Request | any, res: Response) {
                 { "friendDetails.userId": uId }, { "friendDetails.friendId": uId}
             ]
         });
-
-        res.status(200).json({friends});
-    } catch (error) {
         
+        res.status(200).json(friends);
+
+        // friend.forEach((f: any) => {
+        //     const details = f.friendDetails
+        // })
+    } catch (error) {
+        res.status(400).json({error: (error as Error).message});
     }
 }

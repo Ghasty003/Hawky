@@ -53,9 +53,13 @@ function getFriends(req, res) {
                     { "friendDetails.userId": uId }, { "friendDetails.friendId": uId }
                 ]
             });
-            res.status(200).json({ friends });
+            res.status(200).json(friends);
+            // friend.forEach((f: any) => {
+            //     const details = f.friendDetails
+            // })
         }
         catch (error) {
+            res.status(400).json({ error: error.message });
         }
     });
 }
