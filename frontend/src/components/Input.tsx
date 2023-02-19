@@ -27,7 +27,7 @@ function Input() {
         
         const body = {
             senderId: currentUser.id,
-            receiverId: chat.friendDetails.friendId,
+            receiverId,
             text
         }
     
@@ -36,7 +36,7 @@ function Input() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ senderId: currentUser.id, receiverId, text})
+        body: JSON.stringify(body)
         });
 
         const json = await res.json();
@@ -47,6 +47,7 @@ function Input() {
 
         if (res.ok) {
             console.log(json);
+            setText("");
         // setMessage("");
         // socket.current.emit("send-message", json);
         // setMessages(prev => [...prev, json])
