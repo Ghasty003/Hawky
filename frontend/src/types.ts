@@ -56,7 +56,8 @@ export enum Type {
 }
 
 export enum FriendType {
-    ADD = "ADD"
+    ADD = "ADD",
+    FETCH = "FETCH"
 }
 
 export interface AuthActionProp {
