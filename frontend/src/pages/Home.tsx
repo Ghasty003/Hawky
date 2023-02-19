@@ -27,9 +27,6 @@ function Home() {
         })
     }, [currentUser]);
 
-    console.log(onlineUser)
-
-
 
     React.useEffect(() => {
         socket.current.on("receive-message", data => {
