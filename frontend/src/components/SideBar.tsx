@@ -212,7 +212,7 @@ function SideBar({ onlineUser }: { onlineUser: never[]}) {
                 <div className='flex flex-col gap-5 mt-4'>
                     {
                         friends.map(friend => (
-                            <Chats key={friend._id} friend={friend} />
+                            <Chats key={friend._id} friend={friend} onlineUser={onlineUser} />
                         ))
                     }
                 </div>
