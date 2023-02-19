@@ -10,7 +10,6 @@ function Messages({ message }: {message: MessagesProp}) {
     const currentUser = user as User;
 
     const isOwner = message.senderId === currentUser.id;
-    console.log(isOwner)
 
     return (
         <div className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
