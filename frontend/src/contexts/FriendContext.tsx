@@ -23,7 +23,7 @@ const friendReducer: Reducer<FriendStateProp, FriendActionProp> = (state, action
 }
 
 const initialState: FriendStateProp = {
-    friends: null!
+    friends: []
 }
 
 
@@ -32,9 +32,10 @@ export const FriendContextProvider: React.FC<ProviderProp> = ({ children }) => {
     const [state, dispatch] = useReducer(friendReducer, initialState);
 
     const { friends } = state;
+    console.log(state.friends)
 
     return (
-        <FriendContext.Provider value={{friends: (friends as Friend), dispatch}}>
+        <FriendContext.Provider value={{friends: (friends as Friend[]), dispatch}}>
             { children }
         </FriendContext.Provider>
     )
