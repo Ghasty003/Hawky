@@ -59,13 +59,19 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
     
 
     return (
-        <form onSubmit={handleSend} className='flex bg-white items-center h-14 w-full'>
-            <InputEmoji value={text} onChange={handleChange}  />
+        <form onSubmit={handleSend} className={`${chat ? "bg-white" : "bg-empty-chat"} flex items-center h-14 w-full`}>
+            {
+                chat && (
+                    <>
+                        <InputEmoji value={text} onChange={handleChange}  />
 
-            <div className='flex items-center justify-between w-40'>
-                <img src={img} alt="image" />
-                <button className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
-            </div>
+                        <div className='flex items-center justify-between w-40'>
+                            <img src={img} alt="image" />
+                            <button className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
+                        </div>
+                    </>
+                )
+            }
         </form>
     );
 }
