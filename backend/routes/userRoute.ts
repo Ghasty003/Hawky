@@ -1,10 +1,7 @@
 import express from "express";
 import { deleteAccount, findUser, Login, signUp } from "../controllers/userController";
-import requireAuth from "../middlewares/requireAuth";
 
 const router = express.Router();
-
-router.use(requireAuth);
 
 router.post("/signup", signUp);
 
