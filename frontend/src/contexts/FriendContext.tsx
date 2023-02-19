@@ -11,6 +11,11 @@ const friendReducer: Reducer<FriendStateProp, FriendActionProp> = (state, action
             return {
                 friends: [...state as any, action.payload]
             }
+
+        case FriendType.FETCH:
+            return {
+                friends: action.payload
+            }
         
         default:
             return state;
