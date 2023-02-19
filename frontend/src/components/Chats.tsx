@@ -5,7 +5,7 @@ import ChatContext from '../contexts/ChatContext';
 import MessageContext from '../contexts/MessageContext';
 import { Friend, FriendProp, User } from '../types';
 
-const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
+const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, onlineUser }) => {
 
     const isEmpty = friend.friendDetails.friendImage === "";
 
