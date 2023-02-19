@@ -25,6 +25,11 @@ export interface Friend extends User {
     friendUsername: string;
     friendImage: string;
     userId: string;
+    friendDetails: this;
+}
+
+export interface FriendProp {
+    friendDetails: Friend;
 }
 
 export interface AuthReducerStateProp {
