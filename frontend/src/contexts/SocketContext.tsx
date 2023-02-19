@@ -1,13 +1,11 @@
 import React, { createContext, useEffect, useRef, useContext, useState } from "react";
 import { io, Socket } from "socket.io-client";
-import { ProviderProp, User } from "../types";
+import { ProviderProp, SocketContextType, User } from "../types";
 import AuthContext from "./AuthContext";
 
-interface test {
-    test: string
-}
 
-const SocketContext = createContext<test>(null!);
+
+const SocketContext = createContext<SocketContextType>(null!);
 
 
 export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
@@ -32,7 +30,7 @@ export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
 
 
     return (
-        <SocketContext.Provider value={{test}}>
+        <SocketContext.Provider value={{socket}}>
             { children }
         </SocketContext.Provider>
     )
