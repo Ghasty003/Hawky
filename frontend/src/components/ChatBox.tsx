@@ -1,7 +1,3 @@
-import { useContext, useEffect } from "react";
-import AuthContext from "../contexts/AuthContext";
-import ChatContext from "../contexts/ChatContext";
-import { User } from "../types";
 import Header from "./Header";
 import Input from "./Input";
 import Messages from './Messages';
