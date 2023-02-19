@@ -78,6 +78,36 @@ function SideBar() {
         }
     }
 
+    const handleAddFriend = async () => {
+
+        const body = {
+            userName: currentUser.userName,
+            friendUsername: friend.userName,
+            friendId: friend._id,
+            userId: currentUser.id,
+            friendImage: friend.displayPicture
+        }
+
+        const res = await fetch("http://localhost:3000/api/friend/addFriend", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        const json = await res.json();
+
+        if (!res.ok) {
+            console.log(json.error);
+        }
+
+        if (res.ok) {
+            console.log(json);
+            console.log(friend._id)
+        }
+    }
+
     return (
         <div className='flex items-start'>
             <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
@@ -126,7 +156,7 @@ function SideBar() {
                     <form onSubmit={handleSearch}>
                         <p className='ml-1'>Find a User</p>
 
-                        <div className='flex items-center gap-1 my-2 cursor-pointer'>
+                        <div onClick={handleAddFriend} className='flex items-center gap-1 my-2 cursor-pointer'>
                             <img className='w-10 rounded-full object-cover' src={isFriendPictureEmpty ? avatar : friend?.displayPicture} alt="" />
                             <p>{ friend?.userName }</p>
                         </div>
