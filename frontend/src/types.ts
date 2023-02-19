@@ -74,3 +74,16 @@ export interface ChatContextType {
     chat: Friend;
     setChat: React.Dispatch<React.SetStateAction<Friend>>
 }
+
+export interface MessagesProp {
+    _id: string;
+    senderId: string;
+    receiverId: string;
+    text: string;
+    createdAt: string;
+}
+
+export interface MessagesContextType {
+    messages: MessagesProp[];
+    setMessages: React.Dispatch<React.SetStateAction<MessagesProp[]>>;
+}
