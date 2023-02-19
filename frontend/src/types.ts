@@ -95,5 +95,5 @@ export interface OnlineUserPtop {
 }
 
 export interface SocketContextType {
-    socket: Socket;
+    socket: React.MutableRefObject<Socket>;
 }
