@@ -111,7 +111,7 @@ function SideBar() {
 
     useEffect(() => {
         const getFriends = async () => {
-          const res = await fetch("http://localhost:3000/api/friends", {
+          const res = await fetch("http://localhost:3000/api/friend", {
             headers: {
               "Authorization": `Bearer ${currentUser.token}`
             }
@@ -124,7 +124,7 @@ function SideBar() {
   
           if (res.ok) {
             setFriends(json)
-            console.log(json);
+            console.log(json[0]);
           }
         }
         getFriends();
@@ -200,7 +200,7 @@ function SideBar() {
                 <div className='flex flex-col gap-5 mt-4'>
                     {
                         friends.map(friend => (
-                            <Chats key={friend.friendId} />
+                            <Chats key={friend._id} friend={friend} />
                         ))
                     }
                 </div>
