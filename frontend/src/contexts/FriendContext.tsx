@@ -9,7 +9,7 @@ const friendReducer: Reducer<FriendStateProp, FriendActionProp> = (state, action
     switch (action.type) {
         case FriendType.ADD:
             return {
-                friends: [...state as any, action.payload]
+                friends: [...state.friends as any, action.payload]
             }
 
         case FriendType.FETCH:
