@@ -3,7 +3,8 @@ import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
 import AuthContext from '../contexts/AuthContext';
-import { Friend, Type, User } from '../types';
+import { Friend, FriendType, Type, User } from '../types';
+import FriendContext from '../contexts/FriendContext';
 
 function SideBar() {
 
@@ -13,7 +14,6 @@ function SideBar() {
     const [text, setText] = useState("");
     const [err, setErr] = useState("");
     const [friend, setFriend] = useState<User>(null!);
-    const [friends, setFriends] = useState<Friend[]>([]);
 
     const isFriendPictureEmpty = friend?.displayPicture === "";
 
@@ -24,6 +24,8 @@ function SideBar() {
     const currentUser = user as User;
 
     const isEmpty = currentUser.displayPicture === "";
+
+    const { friends, dispatch: friendDispatch } = useContext(FriendContext);
 
     const handleLogout = () => {
         dispatch({type: Type.LOGOUT, payload: {}});
@@ -111,6 +113,7 @@ function SideBar() {
 
         if (res.ok) {
            setFriend(null!);
+           console.log(json)
         }
     }
 
@@ -128,7 +131,7 @@ function SideBar() {
           }
   
           if (res.ok) {
-            setFriends(json)
+            friendDispatch({type: FriendType.FETCH, payload: json});
             console.log(json[0]);
           }
         }
