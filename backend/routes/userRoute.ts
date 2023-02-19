@@ -10,6 +10,6 @@ router.post("/login", Login);
 
 router.delete("/delete/:id", deleteAccount);
 
-router.get("/", findUser);
+router.get("/:userName", findUser);
 
 export default router;
