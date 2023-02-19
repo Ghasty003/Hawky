@@ -5,6 +5,7 @@ import cors from "cors";
 
 import userRoute from "./routes/userRoute";
 import userFriendRoute from "./routes/userFriendRoute";
+import messageRoute from "./routes/messageRoute";
 
 
 class Server {
@@ -23,6 +24,7 @@ class Server {
     public initializeRoutes() {
         this.app.use("/api/user", userRoute);
         this.app.use("/api/friend", userFriendRoute);
+        this.app.use("/api/message", messageRoute);
     }
 
     private listen() {

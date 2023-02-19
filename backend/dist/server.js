@@ -18,6 +18,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
 const userFriendRoute_1 = __importDefault(require("./routes/userFriendRoute"));
+const messageRoute_1 = __importDefault(require("./routes/messageRoute"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -30,6 +31,7 @@ class Server {
     initializeRoutes() {
         this.app.use("/api/user", userRoute_1.default);
         this.app.use("/api/friend", userFriendRoute_1.default);
+        this.app.use("/api/message", messageRoute_1.default);
     }
     listen() {
         this.app.listen(process.env.PORT, () => {
