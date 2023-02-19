@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
@@ -9,6 +9,8 @@ function SideBar() {
 
     const [display, setDisplay] = useState(false);
     const { dispatch, state } = useContext(AuthContext);
+
+    const div = useRef<HTMLDivElement>(null!);
 
     const { user } = state;
 
@@ -24,6 +26,16 @@ function SideBar() {
     const handleDelete =  () => {
         setDisplay(true);
     }
+
+    useEffect(() => {
+        document.addEventListener("click", (e: Event) => {
+            if (div.current.contains(e.target as Node)) {
+                return;
+            }
+
+            setDisplay(false);
+        })
+    } , []);
 
     const deleteAccount = async () => {
         const res = await fetch("http://localhost:3000/api/user/delete/" + currentUser.id, {
@@ -70,7 +82,7 @@ function SideBar() {
                         <RiUserSettingsLine size={25} />
                         <p>Settings</p>
                     </div>
-                    <div onClick={handleDelete} className='flex items-center gap-2 mb-10 cursor-pointer'>
+                    <div ref={div} onClick={handleDelete} className='flex items-center gap-2 mb-10 cursor-pointer'>
                         <AiOutlineDelete size={25} />
                         <p>Delete account</p>
                     </div>
