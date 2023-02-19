@@ -9,7 +9,7 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
     const isEmpty = friend.friendDetails.friendImage === "";
 
     const { state } = useContext(AuthContext);
-    const { setChat } = useContext(ChatContext);
+    const { setChat, chat } = useContext(ChatContext);
 
     const { user  } = state;
 
@@ -17,8 +17,24 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
 
     const isEqual = currentUser.userName === friend.friendDetails.friendUsername;
 
-    const handleClick = () => {
+    const handleClick = async () => {
         setChat(friend as Friend);
+
+        const userId = currentUser.id;
+        const friendId = chat?.friendDetails.friendId;
+    
+        
+        const res = await fetch("http://localhost:3000/api/messages/"+ userId + "/" + friendId );
+        const json = await res.json();
+  
+        if (!res.ok) {
+          console.log(json.error)
+        }
+  
+        if (res.ok) {
+        //   setMessages(json);
+          console.log(json)
+        }
     }
 
     return (
