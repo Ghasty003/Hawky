@@ -1,3 +1,4 @@
+import { Socket } from "socket.io-client";
 import React from "react";
 
 export interface DivProps {
@@ -88,7 +89,11 @@ export interface MessagesContextType {
     setMessages: React.Dispatch<React.SetStateAction<MessagesProp[]>>;
 }
 
-interface OnlineUserPtop {
+export interface OnlineUserPtop {
     socketId: string;
     userId: string;
+}
+
+export interface SocketContextType {
+    socket: Socket;
 }
