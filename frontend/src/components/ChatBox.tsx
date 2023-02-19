@@ -18,9 +18,9 @@ function ChatBox({ socket}: {socket: React.MutableRefObject<Socket>}) {
 
             <div className='custom-height bg-empty-chat overflow-auto'>
                 {
-                    // messages.map(message => (
-                    //     <Messages key={message._id} message={message} />
-                    // ))
+                    messages.map(message => (
+                        <Messages key={message._id} message={message} />
+                    ))
                 }
             </div>
 
