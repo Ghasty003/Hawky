@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import avatar from "../assets/avatar-food.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
@@ -11,7 +11,9 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
 
     const { state } = useContext(AuthContext);
     const { setChat } = useContext(ChatContext);
-    const { setMessages  } = useContext(MessageContext);
+    const { setMessages, messages  } = useContext(MessageContext);
+
+    const [lastMessage, setLastMessage] = useState("");
 
     const { user  } = state;
 
@@ -19,12 +21,12 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
 
     const isEqual = currentUser.userName === friend.friendDetails.friendUsername;
 
+    const userId = currentUser.id;
+    const isMyId = friend.friendDetails.friendId === currentUser.id;
+    const friendId = isMyId ? friend.friendDetails.userId : friend.friendDetails.friendId;
+
     const handleClick = async () => {
         setChat(friend as Friend);
-
-        const userId = currentUser.id;
-        const isMyId = friend.friendDetails.friendId === currentUser.id;
-        const friendId = isMyId ? friend.friendDetails.userId : friend.friendDetails.friendId;
     
         
         const res = await fetch("http://localhost:3000/api/message/"+ userId + "/" + friendId );
@@ -39,13 +41,31 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
         }
     }
 
+    useEffect(() => {
+        const getLastMessage = async () => {
+            const res = await fetch("http://localhost:3000/api/message/lastMessage/" + userId + "/" + friendId);
+
+            const json = await res.json();
+  
+            if (!res.ok) {
+                console.log(json.error)
+            }
+    
+            if (res.ok) {
+                setLastMessage(json.text);
+            }
+        }
+
+        getLastMessage();
+    }, [messages]);
+
     return (
         <div onClick={handleClick} className='flex pr-8 items-start justify-between cursor-pointer'>
             <div className='flex gap-3'>
                 <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover' alt="avatar" />
                 <div>
                     <p className='font-bold capitalize'>{isEqual ? friend.friendDetails.userName : friend.friendDetails.friendUsername }</p>
-                    <p className='text-sm'>last message</p>
+                    <p className='text-sm'>{ lastMessage }</p>
                 </div>
             </div>
             <p className='text-gray-300'>time sent</p>
