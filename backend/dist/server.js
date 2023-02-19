@@ -25,7 +25,11 @@ class Connection {
     constructor() {
         this.app = (0, express_1.default)();
         this.http = http_1.default.createServer(this.app);
-        this.io = new socket_io_1.Server(this.http);
+        this.io = new socket_io_1.Server(this.http, {
+            cors: {
+                origin: "http://localhost:5173"
+            }
+        });
         dotenv_1.default.config();
         this.activeUsers = [];
     }
@@ -44,7 +48,7 @@ class Connection {
         });
     }
     listen() {
-        this.app.listen(process.env.PORT, () => {
+        this.http.listen(process.env.PORT, () => {
             console.log("Connected to db & server started on port", process.env.PORT);
         });
     }

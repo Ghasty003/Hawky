@@ -26,7 +26,11 @@ class Connection {
     public constructor() {
         this.app = express();
         this.http = http.createServer(this.app);
-        this.io = new Server(this.http);
+        this.io = new Server(this.http, {
+            cors: {
+                origin: "http://localhost:5173"
+            }
+        });
         dotevn.config();
         this.activeUsers = [];
     }
@@ -49,7 +53,7 @@ class Connection {
     }
 
     private listen() {
-        this.app.listen(process.env.PORT, () => {
+        this.http.listen(process.env.PORT, () => {
             console.log("Connected to db & server started on port", process.env.PORT);
         });
     }
