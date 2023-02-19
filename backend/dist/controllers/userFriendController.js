@@ -46,7 +46,6 @@ function addFriend(req, res) {
 exports.addFriend = addFriend;
 function getFriends(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { userId, friendId } = req.params;
         const uId = req.user._id;
         try {
             const friends = yield userFriendModel_1.default.find({

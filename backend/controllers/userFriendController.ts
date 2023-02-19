@@ -35,7 +35,6 @@ export async function addFriend(req: Request, res: Response) {
 
 
 export async function getFriends(req: Request | any, res: Response) {
-    const { userId, friendId } = req.params;
 
     const uId = req.user._id;
     try {
