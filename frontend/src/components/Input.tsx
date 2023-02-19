@@ -15,6 +15,9 @@ function Input() {
     const { user } = state;
     const currentUser = user as User;
 
+    const isMyId = chat?.friendDetails.friendId === currentUser.id;
+    const receiverId = isMyId ? chat?.friendDetails.userId : chat?.friendDetails.friendId;
+
     const handleChange = (text: string) => {
         setText(text);
     }
@@ -23,17 +26,17 @@ function Input() {
         e.preventDefault();
         
         const body = {
-            senderId: currentUser._id,
+            senderId: currentUser.id,
             receiverId: chat.friendDetails.friendId,
             text
         }
     
-        const res = await fetch("http://localhost:3000/api/messages", {
+        const res = await fetch("http://localhost:3000/api/message", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify({ senderId: currentUser.id, receiverId, text})
         });
 
         const json = await res.json();

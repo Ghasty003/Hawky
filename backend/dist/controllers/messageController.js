@@ -16,9 +16,9 @@ exports.getMessages = exports.addMessage = void 0;
 const messageModel_1 = __importDefault(require("../models/messageModel"));
 function addMessage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { message, senderId, receiverId } = req.body;
+        const { text, senderId, receiverId } = req.body;
         try {
-            const chat = yield messageModel_1.default.create({ message, senderId, receiverId });
+            const chat = yield messageModel_1.default.create({ text, senderId, receiverId });
             res.status(200).json(chat);
         }
         catch (error) {
