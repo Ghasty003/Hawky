@@ -95,10 +95,15 @@ function SideBar() {
 
             <div className='px-5 bg-secondary h-[500px] overflow-auto'>
                 <div className='sticky top-0 bg-secondary'>
-                    <h2 className='text-2xl mb-6 sticky'>Messages</h2>
+                    <h2 className='text-2xl mb-6 sticky mt-1'>Messages</h2>
 
                     <form>
                         <p className='ml-1'>Find a User</p>
+
+                        <div className='flex items-center gap-1 my-2 cursor-pointer'>
+                            <img className='w-10 rounded-full object-cover' src={avatar} alt="" />
+                            <p>{ "Username" }</p>
+                         </div>
                         
                         <div className='bg-primary p-3 rounded-2xl'>
                             <input type="text" placeholder='Type their username' className='outline-none bg-transparent border-none' />
