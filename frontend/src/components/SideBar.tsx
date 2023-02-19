@@ -128,14 +128,14 @@ function SideBar() {
           }
         }
         getFriends();
-      }, []);
+    }, []);
 
     return (
         <div className='flex items-start'>
             <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
                 <div className='flex items-center gap-1'>
                     <img className='w-10 rounded-full object-cover' src={isEmpty ? avatar : currentUser.displayPicture} alt="" />
-                    <p>{ (user as User).userName }</p>
+                    <p>{ currentUser.userName }</p>
                 </div>
 
                 {
