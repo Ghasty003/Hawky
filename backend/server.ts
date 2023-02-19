@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotevn from "dotenv";
 import cors from "cors";
 import { Server } from "socket.io";
-import http from "http";
+import http, { Server as httpServer } from "http";
 
 import userRoute from "./routes/userRoute";
 import userFriendRoute from "./routes/userFriendRoute";
@@ -20,7 +20,7 @@ interface activeUsersProps {
 class Connection {
     private app: Application;
     private io: Server;
-    private http: any;
+    private http: httpServer;
     private activeUsers: activeUsersProps[];
 
     public constructor() {
