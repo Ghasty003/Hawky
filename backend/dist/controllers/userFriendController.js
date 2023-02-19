@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFriend = void 0;
+exports.getFriends = exports.addFriend = void 0;
 const userFriendModel_1 = __importDefault(require("../models/userFriendModel"));
 function addFriend(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -44,3 +44,20 @@ function addFriend(req, res) {
     });
 }
 exports.addFriend = addFriend;
+function getFriends(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { userId, friendId } = req.params;
+        const uId = req.user._id;
+        try {
+            const friends = yield userFriendModel_1.default.find({
+                $or: [
+                    { "friendDetails.userId": uId }, { "friendDetails.friendId": uId }
+                ]
+            });
+            res.status(200).json({ friends });
+        }
+        catch (error) {
+        }
+    });
+}
+exports.getFriends = getFriends;

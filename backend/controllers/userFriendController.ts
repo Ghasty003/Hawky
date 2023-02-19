@@ -32,3 +32,21 @@ export async function addFriend(req: Request, res: Response) {
         res.status(400).json({error: (error as Error).message});
     }
 }
+
+
+export async function getFriends(req: Request | any, res: Response) {
+    const { userId, friendId } = req.params;
+
+    const uId = req.user._id;
+    try {
+        const friends = await Friend.find({
+            $or: [
+                { "friendDetails.userId": uId }, { "friendDetails.friendId": uId}
+            ]
+        });
+
+        res.status(200).json({friends});
+    } catch (error) {
+        
+    }
+}
