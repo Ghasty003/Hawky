@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import avatar from "../assets/avatar-food.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
+import MessageContext from '../contexts/MessageContext';
 import { Friend, FriendProp, User } from '../types';
 
 const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
@@ -10,6 +11,7 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
 
     const { state } = useContext(AuthContext);
     const { setChat } = useContext(ChatContext);
+    const { setMessages  } = useContext(MessageContext);
 
     const { user  } = state;
 
@@ -33,8 +35,7 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
         }
   
         if (res.ok) {
-        //   setMessages(json);
-          console.log(json)
+          setMessages(json);
         }
     }
 
