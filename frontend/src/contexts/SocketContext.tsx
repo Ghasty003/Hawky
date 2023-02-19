@@ -17,9 +17,6 @@ export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
     const { user } = state;
     const currentUser = user as User;
 
-    const test = "Hello world";
-    console.log(test);
-
     useEffect(() => {
         socket.current = io("http://localhost:3000");
         socket.current.emit("add-new-user", currentUser?.id);
@@ -28,6 +25,7 @@ export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
         })
     }, [currentUser]);
 
+    console.log(onlineUser)
 
     return (
         <SocketContext.Provider value={{socket}}>
