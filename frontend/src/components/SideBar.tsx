@@ -6,7 +6,7 @@ import AuthContext from '../contexts/AuthContext';
 import { FriendType, Type, User } from '../types';
 import FriendContext from '../contexts/FriendContext';
 
-function SideBar() {
+function SideBar({ onlineUser }: { onlineUser: never[]}) {
 
     const [display, setDisplay] = useState(false);
     const { dispatch, state } = useContext(AuthContext);
