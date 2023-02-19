@@ -21,7 +21,7 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
         setChat(friend as Friend);
 
         const userId = currentUser.id;
-        const friendId = chat?.friendDetails.friendId;
+        const friendId = friend.friendDetails.friendId;
     
         
         const res = await fetch("http://localhost:3000/api/message/"+ userId + "/" + friendId );
