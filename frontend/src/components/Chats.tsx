@@ -29,7 +29,11 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
         setChat(friend as Friend);
     
         
-        const res = await fetch("http://localhost:3000/api/message/"+ userId + "/" + friendId );
+        const res = await fetch("http://localhost:3000/api/message/"+ userId + "/" + friendId, {
+            headers: {
+                "Authorization": `Bearer ${currentUser.token}`
+            }
+        });
         const json = await res.json();
   
         if (!res.ok) {
@@ -43,7 +47,11 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
 
     useEffect(() => {
         const getLastMessage = async () => {
-            const res = await fetch("http://localhost:3000/api/message/lastMessage/" + userId + "/" + friendId);
+            const res = await fetch("http://localhost:3000/api/message/lastMessage/" + userId + "/" + friendId, {
+                headers: {
+                    "Authorization": `Bearer ${currentUser.token}`
+                }
+            });
 
             const json = await res.json();
   
