@@ -11,6 +11,7 @@ export interface ProviderProp {
 }
 
 export interface User {
+    _id: string;
     displayPicture: string;
     userName: string;
     password: string;
