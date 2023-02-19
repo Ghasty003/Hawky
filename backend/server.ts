@@ -57,6 +57,10 @@ class Connection {
                 }
             })
 
+            socket.on("send-message", data => {
+                console.log(data);
+            })
+
             socket.on("disconnect", () => {
                 this.activeUsers = this.activeUsers.filter(user => user.socketId !== socket.id);
             })

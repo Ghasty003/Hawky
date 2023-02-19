@@ -53,6 +53,9 @@ class Connection {
                     this.io.emit("get-online-users", this.activeUsers);
                 }
             });
+            socket.on("send-message", data => {
+                console.log(data);
+            });
             socket.on("disconnect", () => {
                 this.activeUsers = this.activeUsers.filter(user => user.socketId !== socket.id);
             });
