@@ -37,7 +37,7 @@ export interface AuthReducerStateProp {
 }
 
 export interface FriendStateProp {
-    friends: Friend | unknown;
+    friends: Friend[] | unknown;
 }
 
 export interface FriendActionProp {
@@ -46,7 +46,7 @@ export interface FriendActionProp {
 }
 
 export interface FriendContextType {
-    friends: Friend;
+    friends: Friend[];
     dispatch: React.Dispatch<FriendActionProp>;
 }
 
