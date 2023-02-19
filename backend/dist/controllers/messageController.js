@@ -52,6 +52,7 @@ exports.getMessages = getMessages;
 function getLastMessage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { senderId, receiverId } = req.params;
+        const uId = req.user._id;
         try {
             const chats = yield messageModel_1.default.findOne({
                 $and: [
@@ -62,7 +63,7 @@ function getLastMessage(req, res) {
                         $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                     },
                 ],
-            }).sort({ createdAt: -1 }).select("text");
+            }).sort({ createdAt: -1 }).select("text").where("senderId").ne(uId);
             res.status(200).json(chats);
         }
         catch (error) {

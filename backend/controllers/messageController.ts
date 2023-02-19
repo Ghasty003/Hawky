@@ -33,8 +33,10 @@ export async function getMessages(req: Request, res: Response ) {
 }
 
 
-export async function getLastMessage(req: Request, res: Response) {
+export async function getLastMessage(req: Request | any, res: Response) {
     const { senderId, receiverId } = req.params;
+
+    const uId = req.user._id;
 
     try {
         const chats = await Message.findOne({
@@ -46,7 +48,7 @@ export async function getLastMessage(req: Request, res: Response) {
                 $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                 },
             ],
-        }).sort({createdAt: -1}).select("text");
+        }).sort({createdAt: -1}).select("text").where("senderId").ne(uId);
         res.status(200).json(chats);
     } catch (error) {
         res.status(400).json({ error: (error as Error).message });
