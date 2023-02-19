@@ -113,7 +113,12 @@ function SideBar() {
 
         if (res.ok) {
            setFriend(null!);
-           console.log(json)
+           const data = {
+            _id: json._id,
+            friendDetails: json
+           }
+
+           friendDispatch({type: FriendType.ADD, payload: data});
         }
     }
 
