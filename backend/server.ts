@@ -48,13 +48,13 @@ class Connection {
     public initSocketConnection() {
         this.io.on("connection", (socket) => {
             socket.on("add-new-user", (userId) => {
-                if (!this.activeUsers.find(user => user.userId === userId)) {
+                if (!this.activeUsers.find(user => user.userId === userId) && userId) {
                     this.activeUsers.push({
                         userId,
                         socketId: socket.id
                     });
+                    console.log(this.activeUsers);
                 }
-                console.log(this.activeUsers);
             })
         })
     }
