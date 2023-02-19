@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useRef, useContext, useState } from "r
 import { io, Socket } from "socket.io-client";
 import { ProviderProp, SocketContextType, User } from "../types";
 import AuthContext from "./AuthContext";
-import MessageContext from "./MessageContext";
 
 
 
