@@ -2,18 +2,33 @@ import express, { Application } from "express";
 import mongoose from "mongoose";
 import dotevn from "dotenv";
 import cors from "cors";
+import { Server } from "socket.io";
+import http from "http";
 
 import userRoute from "./routes/userRoute";
 import userFriendRoute from "./routes/userFriendRoute";
 import messageRoute from "./routes/messageRoute";
 
 
-class Server {
+interface activeUsersProps {
+    socketId: string;
+    senderId: string;
+    receiverId: string;
+}
+
+
+class Connection {
     private app: Application;
+    private io: Server;
+    private http: any;
+    private activeUsers: activeUsersProps[];
 
     public constructor() {
         this.app = express();
+        this.http = http.createServer(this.app);
+        this.io = new Server(this.http);
         dotevn.config();
+        this.activeUsers = [];
     }
 
     public useMiddleWares() {
@@ -25,6 +40,12 @@ class Server {
         this.app.use("/api/user", userRoute);
         this.app.use("/api/friend", userFriendRoute);
         this.app.use("/api/message", messageRoute);
+    }
+
+    public initSocketConnection() {
+        this.io.on("connection", (socket) => {
+            console.log(socket.id);
+        })
     }
 
     private listen() {
@@ -39,8 +60,9 @@ class Server {
     }
 }
 
-const server = new Server();
+const server = new Connection();
 
 server.useMiddleWares();
 server.initializeRoutes();
+server.initSocketConnection();
 server.connectToDB();

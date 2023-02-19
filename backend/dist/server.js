@@ -16,13 +16,18 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const socket_io_1 = require("socket.io");
+const http_1 = __importDefault(require("http"));
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
 const userFriendRoute_1 = __importDefault(require("./routes/userFriendRoute"));
 const messageRoute_1 = __importDefault(require("./routes/messageRoute"));
-class Server {
+class Connection {
     constructor() {
         this.app = (0, express_1.default)();
+        this.http = http_1.default.createServer(this.app);
+        this.io = new socket_io_1.Server(this.http);
         dotenv_1.default.config();
+        this.activeUsers = [];
     }
     useMiddleWares() {
         this.app.use(express_1.default.json({ limit: "50mb" }));
@@ -32,6 +37,11 @@ class Server {
         this.app.use("/api/user", userRoute_1.default);
         this.app.use("/api/friend", userFriendRoute_1.default);
         this.app.use("/api/message", messageRoute_1.default);
+    }
+    initSocketConnection() {
+        this.io.on("connection", (socket) => {
+            console.log(socket.id);
+        });
     }
     listen() {
         this.app.listen(process.env.PORT, () => {
@@ -45,7 +55,8 @@ class Server {
         });
     }
 }
-const server = new Server();
+const server = new Connection();
 server.useMiddleWares();
 server.initializeRoutes();
+server.initSocketConnection();
 server.connectToDB();
