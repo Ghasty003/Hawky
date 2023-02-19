@@ -92,7 +92,8 @@ function SideBar() {
         const res = await fetch("http://localhost:3000/api/friend/addFriend", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${currentUser.token}`
             },
             body: JSON.stringify(body)
         });
@@ -107,6 +108,27 @@ function SideBar() {
             console.log(json);
         }
     }
+
+    useEffect(() => {
+        const getFriends = async () => {
+          const res = await fetch("http://localhost:3000/api/friends", {
+            headers: {
+              "Authorization": `Bearer ${currentUser.token}`
+            }
+          });
+          const json = await res.json();
+  
+          if (!res.ok) {
+            console.log(json.error);
+          }
+  
+          if (res.ok) {
+            setFriends(json)
+            console.log(json);
+          }
+        }
+        getFriends();
+      }, []);
 
     return (
         <div className='flex items-start'>
