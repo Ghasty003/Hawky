@@ -1,12 +1,14 @@
 import React from 'react';
 import avatar from "../assets/avatar-food.png";
-import { Friend } from '../types';
+import { FriendProp } from '../types';
 
-const Chats: React.FC = () => {
+const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
+
+    const isEmpty = friend.friendDetails.friendImage === "";
     return (
         <div className='flex pr-8 items-start justify-between cursor-pointer'>
             <div className='flex gap-3'>
-                <img src={avatar} className='w-12 rounded-full object-cover' alt="avatar" />
+                <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover' alt="avatar" />
                 <div>
                     <p className='font-bold capitalize'>username</p>
                     <p className='text-sm'>last message</p>
