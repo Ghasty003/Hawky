@@ -3,7 +3,7 @@ import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
 import AuthContext from '../contexts/AuthContext';
-import { Friend, FriendType, Type, User } from '../types';
+import { FriendType, Type, User } from '../types';
 import FriendContext from '../contexts/FriendContext';
 
 function SideBar() {
