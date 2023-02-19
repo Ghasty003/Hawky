@@ -35,8 +35,8 @@ function addFriend(req, res) {
                 console.log(exists);
                 return res.status(401).json({ error: "User already exists in your collection" });
             }
-            yield friend.save();
-            res.status(200).json({ userId, friendId, friendImage, userName, friendUsername });
+            const f = yield friend.save();
+            res.status(200).json({ _id: f._id, userId, friendId, friendImage, userName, friendUsername });
         }
         catch (error) {
             res.status(400).json({ error: error.message });
@@ -54,9 +54,6 @@ function getFriends(req, res) {
                 ]
             });
             res.status(200).json(friends);
-            // friend.forEach((f: any) => {
-            //     const details = f.friendDetails
-            // })
         }
         catch (error) {
             res.status(400).json({ error: error.message });

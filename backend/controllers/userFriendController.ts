@@ -26,8 +26,8 @@ export async function addFriend(req: Request, res: Response) {
             return res.status(401).json({error: "User already exists in your collection"});
         }
 
-        await friend.save();
-        res.status(200).json({userId, friendId, friendImage, userName, friendUsername});
+        const f = await friend.save();
+        res.status(200).json({_id: f._id, userId, friendId, friendImage, userName, friendUsername});
     } catch (error) {
         res.status(400).json({error: (error as Error).message});
     }
@@ -46,9 +46,6 @@ export async function getFriends(req: Request | any, res: Response) {
         
         res.status(200).json(friends);
 
-        // friend.forEach((f: any) => {
-        //     const details = f.friendDetails
-        // })
     } catch (error) {
         res.status(400).json({error: (error as Error).message});
     }
