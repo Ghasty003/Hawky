@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import Friend from "../models/userFriendModel";
 
 
-export async function addFriend(req: Request, res: Response) {
+export async function addFriend(req: Request | any, res: Response) {
     const { userId, friendId, friendImage, friendUsername, userName } = req.body;
 
     const friend = new Friend({
@@ -24,6 +25,14 @@ export async function addFriend(req: Request, res: Response) {
         if (exists.length > 0) {
             console.log(exists)
             return res.status(401).json({error: "User already exists in your collection"});
+        }
+
+        const uId = req.user._id;
+
+        const isSelf = uId.toString() === userId;
+
+        if (isSelf) {
+            return res.status(400).json({error: "You can't add yourself."});
         }
 
         const f = await friend.save();

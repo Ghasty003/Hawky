@@ -35,6 +35,11 @@ function addFriend(req, res) {
                 console.log(exists);
                 return res.status(401).json({ error: "User already exists in your collection" });
             }
+            const uId = req.user._id;
+            const isSelf = uId.toString() === userId;
+            if (isSelf) {
+                return res.status(400).json({ error: "You can't add yourself." });
+            }
             const f = yield friend.save();
             res.status(200).json({ _id: f._id, userId, friendId, friendImage, userName, friendUsername });
         }
