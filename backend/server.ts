@@ -68,6 +68,7 @@ class Connection {
 
             socket.on("disconnect", () => {
                 this.activeUsers = this.activeUsers.filter(user => user.socketId !== socket.id);
+                this.io.emit("get-online-users", this.activeUsers);
             })
         })
     }
