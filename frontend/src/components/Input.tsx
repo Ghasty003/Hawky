@@ -57,13 +57,10 @@ function Input() {
     }
 
     useEffect(() => {
-        console.log("should work")
         socket.current.on("receive-message", data => {
-            console.log(data)
             setMessages(prev => (
                 [...prev, data]
             ))
-            console.log("not working")
         })
     }, []);
 
