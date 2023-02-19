@@ -6,6 +6,7 @@ import { AuthContextProvider } from './contexts/AuthContext'
 import { ChatContextProvider } from './contexts/ChatContext'
 import { FriendContextProvider } from './contexts/FriendContext'
 import { MessageContextProvider } from './contexts/MessageContext'
+import {SocketContextProvider } from './contexts/SocketContext'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -14,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <FriendContextProvider>
         <ChatContextProvider>
           <MessageContextProvider>
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>
+            <SocketContextProvider>
+              <React.StrictMode>
+                <App />
+              </React.StrictMode>
+            </SocketContextProvider>
           </MessageContextProvider>
         </ChatContextProvider>
       </FriendContextProvider>
