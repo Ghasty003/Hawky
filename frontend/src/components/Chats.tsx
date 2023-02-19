@@ -9,7 +9,7 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
     const isEmpty = friend.friendDetails.friendImage === "";
 
     const { state } = useContext(AuthContext);
-    const { setChat, chat } = useContext(ChatContext);
+    const { setChat } = useContext(ChatContext);
 
     const { user  } = state;
 
