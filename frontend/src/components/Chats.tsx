@@ -1,7 +1,8 @@
 import React from 'react';
 import avatar from "../assets/avatar-food.png";
+import { Friend } from '../types';
 
-function Chats() {
+const Chats: React.FC = () => {
     return (
         <div className='flex pr-8 items-start justify-between cursor-pointer'>
             <div className='flex gap-3'>

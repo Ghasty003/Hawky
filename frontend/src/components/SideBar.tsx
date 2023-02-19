@@ -3,7 +3,7 @@ import avatar from "../assets/avatar-food.png";
 import { AiOutlineMail, RiUserSettingsLine, AiOutlineDelete, HiOutlineLogout, FcSearch } from "react-icons/all";
 import Chats from './Chats';
 import AuthContext from '../contexts/AuthContext';
-import { Type, User } from '../types';
+import { Friend, Type, User } from '../types';
 
 function SideBar() {
 
@@ -13,6 +13,7 @@ function SideBar() {
     const [text, setText] = useState("");
     const [err, setErr] = useState("");
     const [friend, setFriend] = useState<User>(null!);
+    const [friends, setFriends] = useState<Friend[]>([]);
 
     const isFriendPictureEmpty = friend?.displayPicture === "";
 
@@ -104,7 +105,6 @@ function SideBar() {
 
         if (res.ok) {
             console.log(json);
-            console.log(friend._id)
         }
     }
 
@@ -176,10 +176,11 @@ function SideBar() {
                 </div>
 
                 <div className='flex flex-col gap-5 mt-4'>
-                    <Chats />
-                    <Chats />
-                    <Chats />
-                    <Chats />
+                    {
+                        friends.map(friend => (
+                            <Chats key={friend.friendId} />
+                        ))
+                    }
                 </div>
             </div>
 
