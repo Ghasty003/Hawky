@@ -36,9 +36,27 @@ export interface AuthReducerStateProp {
     user: User | unknown;
 }
 
+export interface FriendStateProp {
+    friends: Friend | unknown;
+}
+
+export interface FriendActionProp {
+    type: FriendType;
+    payload: object;
+}
+
+export interface FriendContextType {
+    friends: Friend;
+    dispatch: React.Dispatch<FriendActionProp>;
+}
+
 export enum Type {
     LOGIN = "LOGIN",
     LOGOUT = "LOGOUT"
+}
+
+export enum FriendType {
+    ADD = "ADD"
 }
 
 export interface AuthActionProp {
