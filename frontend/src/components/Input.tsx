@@ -4,6 +4,7 @@ import img from "../assets/img.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
 import MessageContext from '../contexts/MessageContext';
+import SocketContext from '../contexts/SocketContext';
 import { User } from '../types';
 
 function Input() {
@@ -13,6 +14,7 @@ function Input() {
     const { state } = useContext(AuthContext);
     const { chat } = useContext(ChatContext);
     const { setMessages } = useContext(MessageContext);
+    const { socket } = useContext(SocketContext);
 
     const { user } = state;
     const currentUser = user as User;
@@ -50,7 +52,7 @@ function Input() {
         if (res.ok) {
             console.log(json);
             setText("");
-        // socket.current.emit("send-message", json);
+        socket.current.emit("send-message", json);
         setMessages(prev => [...prev, json])
         }
     }
