@@ -44,7 +44,15 @@ class Connection {
     }
     initSocketConnection() {
         this.io.on("connection", (socket) => {
-            console.log(socket.id);
+            socket.on("add-new-user", (userId) => {
+                if (!this.activeUsers.find(user => user.userId === userId)) {
+                    this.activeUsers.push({
+                        userId,
+                        socketId: socket.id
+                    });
+                }
+            });
+            console.log(this.activeUsers);
         });
     }
     listen() {
