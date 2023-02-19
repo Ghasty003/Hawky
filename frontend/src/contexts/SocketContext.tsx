@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useRef, useContext, useState } from "r
 import { io, Socket } from "socket.io-client";
 import { ProviderProp, SocketContextType, User } from "../types";
 import AuthContext from "./AuthContext";
+import MessageContext from "./MessageContext";
 
 
 
@@ -14,6 +15,8 @@ export const SocketContextProvider: React.FC<ProviderProp> = ({ children }) => {
     const [onlineUser, setOnlineUser] = useState([]);
 
     const { state } = useContext(AuthContext);
+    const { setMessages } = useContext(MessageContext);
+
     const { user } = state;
     const currentUser = user as User;
 

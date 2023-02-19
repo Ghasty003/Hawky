@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import InputEmoji from "react-input-emoji";
 import img from "../assets/img.png";
 import AuthContext from '../contexts/AuthContext';
@@ -50,12 +50,22 @@ function Input() {
         }
 
         if (res.ok) {
-            console.log(json);
             setText("");
             socket.current.emit("send-message", json);
             setMessages(prev => [...prev, json])
         }
     }
+
+    useEffect(() => {
+        console.log("should work")
+        socket.current.on("receive-message", data => {
+            console.log(data)
+            setMessages(prev => (
+                [...prev, data]
+            ))
+            console.log("not working")
+        })
+    }, []);
 
     return (
         <form onSubmit={handleSend} className='flex bg-white items-center h-14 w-full'>
