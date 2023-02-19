@@ -16,6 +16,16 @@ export async function addFriend(req: Request, res: Response) {
     });
 
     try {
+        const exists = await Friend.find({
+            "friendDetails.userId": userId,
+            "friendDetails.friendId": friendId,
+        });
+
+        if (exists.length > 0) {
+            console.log(exists)
+            return res.status(401).json({error: "User already exists in your collection"});
+        }
+
         await friend.save();
         res.status(200).json({userId, friendId, friendImage, userName, friendUsername});
     } catch (error) {

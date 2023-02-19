@@ -27,6 +27,14 @@ function addFriend(req, res) {
             }
         });
         try {
+            const exists = yield userFriendModel_1.default.find({
+                "friendDetails.userId": userId,
+                "friendDetails.friendId": friendId,
+            });
+            if (exists.length > 0) {
+                console.log(exists);
+                return res.status(401).json({ error: "User already exists in your collection" });
+            }
             yield friend.save();
             res.status(200).json({ userId, friendId, friendImage, userName, friendUsername });
         }
