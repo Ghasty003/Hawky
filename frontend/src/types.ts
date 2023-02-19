@@ -87,3 +87,8 @@ export interface MessagesContextType {
     messages: MessagesProp[];
     setMessages: React.Dispatch<React.SetStateAction<MessagesProp[]>>;
 }
+
+interface OnlineUserPtop {
+    socketId: string;
+    userId: string;
+}
