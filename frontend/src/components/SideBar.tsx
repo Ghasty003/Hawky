@@ -137,7 +137,6 @@ function SideBar() {
   
           if (res.ok) {
             friendDispatch({type: FriendType.FETCH, payload: json});
-            console.log(json[0]);
           }
         }
         getFriends();
