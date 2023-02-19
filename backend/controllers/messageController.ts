@@ -31,3 +31,24 @@ export async function getMessages(req: Request, res: Response ) {
         res.status(400).json({ error: (error as Error).message });
     }
 }
+
+
+export async function getLastMessage(req: Request, res: Response) {
+    const { senderId, receiverId } = req.params;
+
+    try {
+        const chats = await Message.findOne({
+            $and: [
+                {
+                $or: [{ senderId: senderId }, { receiverId: senderId }],
+                },
+                {
+                $or: [{ receiverId: receiverId }, { senderId: receiverId }],
+                },
+            ],
+        }).sort({createdAt: -1}).select("text");
+        res.status(200).json(chats);
+    } catch (error) {
+        res.status(400).json({ error: (error as Error).message });
+    }
+}
