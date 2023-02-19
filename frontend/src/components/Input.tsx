@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import InputEmoji from "react-input-emoji";
+import { Socket } from 'socket.io-client';
 import img from "../assets/img.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
@@ -7,14 +8,13 @@ import MessageContext from '../contexts/MessageContext';
 import SocketContext from '../contexts/SocketContext';
 import { User } from '../types';
 
-function Input() {
+function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const [text, setText] = useState<string>("");
 
     const { state } = useContext(AuthContext);
     const { chat } = useContext(ChatContext);
     const { setMessages } = useContext(MessageContext);
-    const { socket } = useContext(SocketContext);
 
     const { user } = state;
     const currentUser = user as User;
