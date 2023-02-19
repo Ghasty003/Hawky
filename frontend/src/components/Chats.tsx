@@ -60,7 +60,7 @@ const Chats: React.FC<{friend: FriendProp}> = ({ friend }) => {
             }
     
             if (res.ok) {
-                setLastMessage(json.text);
+                setLastMessage(json?.text);
             }
         }
 
