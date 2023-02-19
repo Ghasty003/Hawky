@@ -10,6 +10,10 @@ function SideBar() {
     const [display, setDisplay] = useState(false);
     const { dispatch, state } = useContext(AuthContext);
 
+    const [friend, setFriend] = useState<User>(null!);
+
+    const isFriendPictureEmpty = friend?.displayPicture === "";
+
     const div = useRef<HTMLDivElement>(null!);
 
     const { user } = state;
@@ -63,7 +67,7 @@ function SideBar() {
         }
 
         if (res.ok) {
-            console.log(json)
+            setFriend(json);
         }
     }
 
@@ -116,8 +120,8 @@ function SideBar() {
                         <p className='ml-1'>Find a User</p>
 
                         <div className='flex items-center gap-1 my-2 cursor-pointer'>
-                            <img className='w-10 rounded-full object-cover' src={avatar} alt="" />
-                            <p>{ "Username" }</p>
+                            <img className='w-10 rounded-full object-cover' src={isFriendPictureEmpty ? avatar : friend?.displayPicture} alt="" />
+                            <p>{ friend?.userName }</p>
                          </div>
                         
                         <div className='bg-primary p-3 rounded-2xl'>
