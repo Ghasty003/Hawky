@@ -44,3 +44,19 @@ export async function deleteAccount(req: Request, res: Response) {
         res.status(400).json({error: (error as Error).message});
     }
 }
+
+
+export async function findUser(req: Request, res: Response) {
+    const { userName } = req.params;
+    
+    try {
+        const user = await User.findOne({ userName });
+        if (!user) {
+            return res.status(404).json({error: "User doesn't exist"});
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        
+    }
+}
