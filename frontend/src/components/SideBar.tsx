@@ -52,6 +52,21 @@ function SideBar() {
         }
     }
 
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const res = await fetch("http://localhost:3000/api/user/" + currentUser.userName);
+        const json = await res.json();
+
+        if (!res.ok) {
+            console.log(json.error);
+        }
+
+        if (res.ok) {
+            console.log(json)
+        }
+    }
+
     return (
         <div className='flex items-start'>
             <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
@@ -97,7 +112,7 @@ function SideBar() {
                 <div className='sticky top-0 bg-secondary'>
                     <h2 className='text-2xl mb-6 sticky mt-1'>Messages</h2>
 
-                    <form>
+                    <form onSubmit={handleSearch}>
                         <p className='ml-1'>Find a User</p>
 
                         <div className='flex items-center gap-1 my-2 cursor-pointer'>
