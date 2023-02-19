@@ -8,7 +8,7 @@ import Input from "./Input";
 import Messages from './Messages';
 
 
-function ChatBox({ onlineUser, socket}: {socket: React.MutableRefObject<Socket>, onlineUser: never[]}) {
+function ChatBox({ socket}: {socket: React.MutableRefObject<Socket>}) {
 
     const { messages, setMessages } = useContext(MessageContext);
     const { chat } = useContext(ChatContext);
