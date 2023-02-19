@@ -53,7 +53,7 @@ class Connection {
                         userId,
                         socketId: socket.id
                     });
-                    console.log(this.activeUsers);
+                    this.io.emit("get-online-users", this.activeUsers);
                 }
             })
 
