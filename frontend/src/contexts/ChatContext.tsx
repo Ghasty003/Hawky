@@ -10,8 +10,10 @@ export const ChatContextProvider: React.FC<ProviderProp> = ({ children }) => {
 
     const [chat, setChat] = useState<Friend>(null!);
 
+    const chatDiv = React.useRef<HTMLDivElement>(null!);
+
     return (
-        <ChatContext.Provider value={{ chat, setChat }}>
+        <ChatContext.Provider value={{ chat, setChat, chatDiv }}>
             { children }
         </ChatContext.Provider>
     )
