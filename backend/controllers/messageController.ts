@@ -49,7 +49,7 @@ export async function getLastMessage(req: Request | any, res: Response) {
                 },
             ],
         }).sort({createdAt: -1}).select("text").where("senderId").ne(uId);
-        if (chats?.text == "") {
+        if (chats?.text === "") {
             return res.status(200).json({text: "image-alt-send"})
         }
         res.status(200).json(chats);
