@@ -57,6 +57,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
+        setImage("");
 
         if ( !text && !image) {
             return
