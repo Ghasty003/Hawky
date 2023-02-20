@@ -66,7 +66,6 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
             }
     
             if (res.ok) {
-                console.log(json);
                 setLastMessage(json?.text);
             }
         }
