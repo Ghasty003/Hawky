@@ -36,6 +36,9 @@ const messageSchema = new mongoose_1.Schema({
     text: {
         type: String,
         required: true
+    },
+    image: {
+        type: String
     }
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("messages", messageSchema);
