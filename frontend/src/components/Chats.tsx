@@ -81,7 +81,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
                     <p className='font-bold capitalize'>{isEqual ? friend.friendDetails.userName : friend.friendDetails.friendUsername }</p>
                     {
                        lastMessage === "image-alt-send" ?  <p className='flex items-center text-red-400'> <img className='w-5' src={imagechat} alt="image" /> image</p> :
-                        <p className='text-sm'>{ lastMessage  }</p>
+                        <p className='text-sm w-16 overflow-hidden whitespace-nowrap text-ellipsis'>{ lastMessage  }</p>
                     }
                 </div>
             </div>
