@@ -11,7 +11,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
     const isEmpty = friend.friendDetails.friendImage === "";
 
     const { state } = useContext(AuthContext);
-    const { setChat } = useContext(ChatContext);
+    const { setChat, chatDiv } = useContext(ChatContext);
     const { setMessages, messages  } = useContext(MessageContext);
 
     const [lastMessage, setLastMessage] = useState("");
@@ -74,7 +74,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
     }, [messages]);
 
     return (
-        <div onClick={handleClick} className='flex pr-8 items-start justify-between cursor-pointer'>
+        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between cursor-pointer'>
             <div className='flex gap-3'>
                 <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover' alt="avatar" />
                 <div>
