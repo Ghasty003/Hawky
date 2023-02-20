@@ -14,6 +14,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
     const { setMessages, messages  } = useContext(MessageContext);
 
     const [lastMessage, setLastMessage] = useState("");
+    const [isOnline, setIsOnline] = useState<boolean>(false);
 
     const { user  } = state;
 
@@ -46,6 +47,10 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
     }
 
     useEffect(() => {
+        
+    }, []);
+
+    useEffect(() => {
         const getLastMessage = async () => {
             const res = await fetch("http://localhost:3000/api/message/lastMessage/" + userId + "/" + friendId, {
                 headers: {
@@ -76,7 +81,9 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
                     <p className='text-sm'>{ lastMessage }</p>
                 </div>
             </div>
-            <p className='text-gray-300'>time sent</p>
+            <p className='text-gray-300'>
+                
+            </p>
         </div>
     );
 }

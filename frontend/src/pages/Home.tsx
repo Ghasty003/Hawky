@@ -33,6 +33,10 @@ function Home() {
           setMessages(prev => (
             [...prev, data]
           ))
+        });
+
+        socket.current.on("is-online", data => {
+            console.log(data)
         })
     }, []);
 
