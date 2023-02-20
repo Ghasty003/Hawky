@@ -23,9 +23,9 @@ function Messages({ message }: {message: MessagesProp}) {
     return (
         <div ref={div} className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
             <div>
-                <div className={`${isOwner ? "owner" : "not-owner"} bg-[#3e3c61] w-fit p-1 max-w-[200px] rounded-b-lg`}>
+                {message.text && <div className={`${isOwner ? "owner" : "not-owner"} bg-[#3e3c61] w-fit p-1 max-w-[200px] rounded-b-lg`}>
                     { message.text }
-                </div>
+                </div>}
                 { message.image && <img className='w-36 my-2' src={message.image} alt="" />}
             </div>
         </div>
