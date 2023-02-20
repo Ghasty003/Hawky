@@ -81,6 +81,7 @@ export interface MessagesProp {
     senderId: string;
     receiverId: string;
     text: string;
+    image: string;
     createdAt: string;
 }
 
