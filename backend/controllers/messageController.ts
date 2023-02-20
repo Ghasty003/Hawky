@@ -49,6 +49,9 @@ export async function getLastMessage(req: Request | any, res: Response) {
                 },
             ],
         }).sort({createdAt: -1}).select("text").where("senderId").ne(uId);
+        if (chats?.text == "") {
+            return res.status(200).json({text: "image"})
+        }
         res.status(200).json(chats);
     } catch (error) {
         res.status(400).json({ error: (error as Error).message });

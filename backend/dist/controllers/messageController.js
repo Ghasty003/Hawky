@@ -64,6 +64,9 @@ function getLastMessage(req, res) {
                     },
                 ],
             }).sort({ createdAt: -1 }).select("text").where("senderId").ne(uId);
+            if ((chats === null || chats === void 0 ? void 0 : chats.text) == "") {
+                return res.status(200).json({ text: "image" });
+            }
             res.status(200).json(chats);
         }
         catch (error) {
