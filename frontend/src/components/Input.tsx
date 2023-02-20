@@ -8,9 +8,38 @@ import MessageContext from '../contexts/MessageContext';
 import SocketContext from '../contexts/SocketContext';
 import { User } from '../types';
 
+
+function convertTobase64(file: Blob) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+            resolve(fileReader.result);
+        }
+
+        fileReader.onerror = (error) => {
+            reject(error);
+        }
+    })
+}
+
 function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const [text, setText] = useState<string>("");
+    const [image, setImage] = useState<string>("");
+
+    const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            try {
+                const file = e.target.files[0];
+                const base64 = await convertTobase64(file);
+                setImage(base64 as string);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
 
     const { state } = useContext(AuthContext);
     const { chat } = useContext(ChatContext);
@@ -28,11 +57,16 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if ( !text && !image) {
+            return
+        }
         
         const body = {
             senderId: currentUser.id,
             receiverId,
-            text
+            text,
+            image
         }
     
         const res = await fetch("http://localhost:3000/api/message", {
@@ -70,7 +104,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                             <label className='cursor-pointer' htmlFor="image">
                                 <img src={img} alt="image" />
                             </label>
-                            <input className='hidden' type="file" id="image" />
+                            <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
                             <button className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
                         </div>
                     </>
