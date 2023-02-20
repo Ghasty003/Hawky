@@ -4,6 +4,7 @@ import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
 import MessageContext from '../contexts/MessageContext';
 import { Friend, FriendProp, User } from '../types';
+import imagechat from "../assets/imagechat.png";
 
 const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, onlineUser }) => {
 
@@ -80,7 +81,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
                 <div>
                     <p className='font-bold capitalize'>{isEqual ? friend.friendDetails.userName : friend.friendDetails.friendUsername }</p>
                     {
-                       lastMessage === "image-alt-send" ?  <img className='w-10' src="" alt="image" /> :
+                       lastMessage === "image-alt-send" ?  <p className='flex items-center text-red-400'> <img className='w-5' src={imagechat} alt="image" /> image</p> :
                         <p className='text-sm'>{ lastMessage  }</p>
                     }
                 </div>
