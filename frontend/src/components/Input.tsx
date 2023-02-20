@@ -67,7 +67,10 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                         <InputEmoji value={text} onChange={handleChange}  />
 
                         <div className='flex items-center justify-between w-40'>
-                            <img src={img} alt="image" />
+                            <label className='cursor-pointer' htmlFor="image">
+                                <img src={img} alt="image" />
+                            </label>
+                            <input className='hidden' type="file" id="image" />
                             <button className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
                         </div>
                     </>
