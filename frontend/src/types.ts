@@ -73,7 +73,8 @@ export interface AuthContextType {
 
 export interface ChatContextType {
     chat: Friend;
-    setChat: React.Dispatch<React.SetStateAction<Friend>>
+    setChat: React.Dispatch<React.SetStateAction<Friend>>;
+    chatDiv: React.MutableRefObject<HTMLDivElement>;
 }
 
 export interface MessagesProp {
