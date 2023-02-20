@@ -65,6 +65,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
             }
     
             if (res.ok) {
+                console.log(json);
                 setLastMessage(json?.text);
             }
         }
@@ -78,7 +79,10 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
                 <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover' alt="avatar" />
                 <div>
                     <p className='font-bold capitalize'>{isEqual ? friend.friendDetails.userName : friend.friendDetails.friendUsername }</p>
-                    <p className='text-sm'>{ lastMessage }</p>
+                    {
+                       lastMessage === "image-alt-send" ?  <img className='w-10' src="" alt="image" /> :
+                        <p className='text-sm'>{ lastMessage  }</p>
+                    }
                 </div>
             </div>
             <p className='text-gray-300'>
