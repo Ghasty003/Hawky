@@ -22,7 +22,7 @@ function Messages({ message }: {message: MessagesProp}) {
 
     return (
         <div ref={div} className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
-            <div>
+            <div className={`${isOwner && "flex flex-col items-end"}`}>
                 {message.text && <div className={`${isOwner ? "owner" : "not-owner"} bg-[#3e3c61] w-fit p-1 max-w-[200px] rounded-b-lg`}>
                     { message.text }
                 </div>}
