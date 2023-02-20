@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import Message from "../models/messageModel";
 
 export async function addMessage(req: Request, res: Response) {
-    const { text, senderId, receiverId } = req.body;
+    const { text, image, senderId, receiverId } = req.body;
   
     try {
-      const chat = await Message.create({ text, senderId, receiverId });
+      const chat = await Message.create({ text, image, senderId, receiverId });
       res.status(200).json(chat);
     } catch (error) {
       res.status(400).json({ error:( error as Error).message });
