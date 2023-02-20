@@ -2,6 +2,7 @@ import React, { useContext, useRef } from 'react';
 import AuthContext from '../contexts/AuthContext';
 import MessageContext from '../contexts/MessageContext';
 import { MessagesProp, User } from '../types';
+import groupchat from "../assets/groupchat.jpg";
 
 function Messages({ message }: {message: MessagesProp}) {
 
@@ -24,6 +25,7 @@ function Messages({ message }: {message: MessagesProp}) {
             <div className={`${isOwner ? "owner" : "not-owner"} bg-[#3e3c61] w-fit p-1 max-w-[200px] rounded-b-lg`}>
                 { message.text }
             </div>
+            <img className='w-36' src={groupchat} alt="" />
         </div>
     );
 }
