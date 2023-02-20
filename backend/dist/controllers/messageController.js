@@ -63,7 +63,7 @@ function getLastMessage(req, res) {
                         $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                     },
                 ],
-            }).sort({ createdAt: -1 }).select("text").where("senderId").ne(uId);
+            }).sort({ createdAt: -1 }).select("text image").where("senderId").ne(uId);
             if ((chats === null || chats === void 0 ? void 0 : chats.text) === "") {
                 return res.status(200).json({ text: "image-alt-send" });
             }

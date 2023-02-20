@@ -48,7 +48,7 @@ export async function getLastMessage(req: Request | any, res: Response) {
                 $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                 },
             ],
-        }).sort({createdAt: -1}).select("text").where("senderId").ne(uId);
+        }).sort({createdAt: -1}).select("text image").where("senderId").ne(uId);
         if (chats?.text === "") {
             return res.status(200).json({text: "image-alt-send"})
         }
