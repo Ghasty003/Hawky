@@ -5,6 +5,7 @@ import ChatContext from '../contexts/ChatContext';
 import MessageContext from '../contexts/MessageContext';
 import { Friend, FriendProp, User } from '../types';
 import imagechat from "../assets/imagechat.png";
+import FriendContext from '../contexts/FriendContext';
 
 const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, onlineUser }) => {
 
@@ -13,9 +14,10 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
     const { state } = useContext(AuthContext);
     const { setChat, chatDiv } = useContext(ChatContext);
     const { setMessages, messages  } = useContext(MessageContext);
+    const { friends } = useContext(FriendContext);
 
     const [lastMessage, setLastMessage] = useState("");
-    const [isOnline, setIsOnline] = useState<boolean>(false);
+    const [isOnline, setIsOnline] = useState<string[]>(null!);
 
     const { user  } = state;
 
@@ -25,6 +27,8 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
 
     const userId = currentUser.id;
     const isMyId = friend.friendDetails.friendId === currentUser.id;
+    const uId = isMyId ? friend.friendDetails.friendId : currentUser.id;
+    // console.log(uId)
     const friendId = isMyId ? friend.friendDetails.userId : friend.friendDetails.friendId;
 
     const handleClick = async () => {
@@ -46,6 +50,27 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
           setMessages(json);
         }
     }
+
+    const member = [currentUser.id];
+    friends.forEach(f => {
+        if (f.friendDetails.friendId !== currentUser.id) {
+            member.push(f.friendDetails.friendId);
+        } 
+        if (f.friendDetails.userId !== currentUser.id) {
+            member.push(f.friendDetails.userId)
+        }
+    })
+
+   useEffect(() => {
+    const us = member.filter(user => user != currentUser.id);
+    us.forEach(i => {
+        const online = onlineUser.filter(u => (u as any).userId == i);
+        setIsOnline(online)
+        console.log(online)
+    })
+   }, []);
+
+   
 
 
     useEffect(() => {
@@ -83,7 +108,9 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
                 </div>
             </div>
             <p className='text-gray-300 l'>
-                
+                {
+                    // isOnline?.includes(friend.friendDetails.userId) ? "online" : "offline"
+                }
             </p>
         </div>
     );
