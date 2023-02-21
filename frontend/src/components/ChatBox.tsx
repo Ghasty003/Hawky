@@ -12,15 +12,15 @@ import Messages from './Messages';
 function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
 
     const { messages } = useContext(MessageContext);
-    const { chat, chatDiv } = useContext(ChatContext);
+    const { chat, setChat } = useContext(ChatContext);
 
     const Div = useRef<HTMLDivElement>(null!);
 
     useEffect(() => {
         document.addEventListener("click", (e: Event) => {
-            if (!chatDiv.current.contains(e.target as Node) && !Div.current.contains(e.target as Node)) {
-                console.log("clear chat");
-            }
+           if (!(e.target as HTMLDivElement).classList.contains("l") && !Div.current.contains(e.target as Node)) {
+                setChat(null!);
+           }
         })
     }, []);
     
