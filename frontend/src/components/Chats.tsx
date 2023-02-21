@@ -47,8 +47,6 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
         }
     }
 
-    // const Div = useRef<HTMLDivElement>(null!);
-
 
     useEffect(() => {
         const getLastMessage = async () => {
