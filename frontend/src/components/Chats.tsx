@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import avatar from "../assets/avatar-food.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
@@ -6,7 +6,7 @@ import MessageContext from '../contexts/MessageContext';
 import { Friend, FriendProp, User } from '../types';
 import imagechat from "../assets/imagechat.png";
 
-const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, onlineUser }) => {
+const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, onlineUser }) => {
 
     const isEmpty = friend.friendDetails.friendImage === "";
 
@@ -47,9 +47,8 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
         }
     }
 
-    useEffect(() => {
-        
-    }, []);
+    // const Div = useRef<HTMLDivElement>(null!);
+
 
     useEffect(() => {
         const getLastMessage = async () => {
@@ -74,7 +73,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[]}> = ({ friend, on
     }, [messages]);
 
     return (
-        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between cursor-pointer'>
+        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between bg-black cursor-pointer'>
             <div className='flex gap-3'>
                 <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover' alt="avatar" />
                 <div>

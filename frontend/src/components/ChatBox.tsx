@@ -9,16 +9,16 @@ import Input from "./Input";
 import Messages from './Messages';
 
 
-function ChatBox({ socket}: {socket: React.MutableRefObject<Socket>}) {
+function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
 
-    const { messages, setMessages } = useContext(MessageContext);
-    const { chat, setChat } = useContext(ChatContext);
+    const { messages } = useContext(MessageContext);
+    const { chat, chatDiv } = useContext(ChatContext);
 
-    const div = useRef<HTMLDivElement>(null!);
+    const Div = useRef<HTMLDivElement>(null!);
 
     useEffect(() => {
         document.addEventListener("click", (e: Event) => {
-            if (!div.current.contains(e.target as Node)) {
+            if (!chatDiv.current.contains(e.target as Node) && !Div.current.contains(e.target as Node)) {
                 console.log("clear chat");
             }
         })
@@ -26,7 +26,7 @@ function ChatBox({ socket}: {socket: React.MutableRefObject<Socket>}) {
     
 
     return (
-        <div ref={div} className='w-[50%] relative'>
+        <div ref={Div} className='w-[50%] relative'>
             <Header />
 
             <div className='custom-height bg-empty-chat overflow-auto'>
