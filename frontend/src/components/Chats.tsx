@@ -71,7 +71,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
     }, [messages]);
 
     return (
-        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between bg-black cursor-pointer l'>
+        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between cursor-pointer l'>
             <div className='flex gap-3 l'>
                 <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover l' alt="avatar" />
                 <div>
