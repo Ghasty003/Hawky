@@ -73,18 +73,18 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
     }, [messages]);
 
     return (
-        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between bg-black cursor-pointer'>
-            <div className='flex gap-3'>
-                <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover' alt="avatar" />
+        <div ref={chatDiv} onClick={handleClick} className='flex pr-8 items-start justify-between bg-black cursor-pointer l'>
+            <div className='flex gap-3 l'>
+                <img src={isEmpty ? avatar : friend.friendDetails.friendImage} className='w-12 rounded-full object-cover l' alt="avatar" />
                 <div>
-                    <p className='font-bold capitalize'>{isEqual ? friend.friendDetails.userName : friend.friendDetails.friendUsername }</p>
+                    <p className='font-bold capitalize l'>{isEqual ? friend.friendDetails.userName : friend.friendDetails.friendUsername }</p>
                     {
-                       lastMessage === "image-alt-send" ?  <p className='flex items-center text-red-400'> <img className='w-5' src={imagechat} alt="image" /> image</p> :
-                        <p className='text-sm w-16 overflow-hidden whitespace-nowrap text-ellipsis'>{ lastMessage  }</p>
+                       lastMessage === "image-alt-send" ?  <p className='flex items-center text-red-400 l'> <img className='w-5 l' src={imagechat} alt="image" /> image</p> :
+                        <p className='text-sm w-16 overflow-hidden whitespace-nowrap text-ellipsis l'>{ lastMessage  }</p>
                     }
                 </div>
             </div>
-            <p className='text-gray-300'>
+            <p className='text-gray-300 l'>
                 
             </p>
         </div>
