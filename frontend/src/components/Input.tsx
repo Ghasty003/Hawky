@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import InputEmoji from "react-input-emoji";
+import { AiFillAudio } from "react-icons/all";
 import { Socket } from 'socket.io-client';
 import img from "../assets/img.png";
 import AuthContext from '../contexts/AuthContext';
 import ChatContext from '../contexts/ChatContext';
 import MessageContext from '../contexts/MessageContext';
-import SocketContext from '../contexts/SocketContext';
 import { User } from '../types';
 
 
@@ -99,14 +99,17 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
             {
                 chat && (
                     <>
-                        <InputEmoji value={text} onChange={handleChange}  />
+                        <div className='w-[80%]'>
+                            <InputEmoji value={text} onChange={handleChange}  />
+                        </div>
 
-                        <div className='flex items-center justify-between w-40'>
-                            <label className='cursor-pointer' htmlFor="image">
+                        <div className='flex items-center gap-5 justify-between w-40'>
+                            <label title='choose image' className='cursor-pointer' htmlFor="image">
                                 <img src={img} alt="image" />
                             </label>
                             <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
-                            <button className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
+                            <AiFillAudio size={25} cursor="pointer" color="black" />
+                            <button title='send' className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
                         </div>
                     </>
                 )
