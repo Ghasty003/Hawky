@@ -38,6 +38,9 @@ const messageSchema = new mongoose_1.Schema({
     },
     image: {
         type: String
+    },
+    audio: {
+        type: String
     }
 }, { timestamps: true });
 exports.default = mongoose_1.default.model("messages", messageSchema);

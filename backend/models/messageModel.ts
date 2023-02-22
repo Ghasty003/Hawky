@@ -15,6 +15,9 @@ const messageSchema = new Schema({
     },
     image: {
         type: String
+    },
+    audio: {
+        type: String
     }
 }, { timestamps: true });
 
