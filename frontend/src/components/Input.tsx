@@ -108,7 +108,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                                 <img src={img} alt="image" />
                             </label>
                             <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
-                            <AiFillAudio size={25} cursor="pointer" color="black" />
+                            <AiFillAudio size={25} cursor="pointer" color="#5b5d8d" />
                             <button title='send' className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
                         </div>
                     </>
