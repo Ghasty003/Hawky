@@ -58,6 +58,7 @@ body {
     transform: translateY(-100%);
     background-color: rgba(0, 0, 0, .6);
     width: 200px;
+    padding: 5px;
     margin-left: -100px;
     text-align: center;
     border-radius: 8px;
