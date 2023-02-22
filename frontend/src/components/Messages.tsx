@@ -30,7 +30,6 @@ function Messages({ message }: {message: MessagesProp}) {
                 </div>}
                 { message.image && <img className='w-36 my-2' src={message.image} alt="" />}
                 {message.audio && <div>
-                    <p>audio</p>
                     <audio src={message.audio} controls></audio>
                 </div>}
             </div>
