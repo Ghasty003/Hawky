@@ -28,6 +28,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const [text, setText] = useState<string>("");
     const [image, setImage] = useState<string>("");
+    const [audio, setAudio] = useState<string>("");
 
     const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -59,15 +60,15 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
         e.preventDefault();
         setImage("");
 
-        if ( !text && !image) {
-            return
+        if (!text && !image && !audio) {
+            return;
         }
         
         const body = {
             senderId: currentUser.id,
             receiverId,
             text,
-            image
+            image,
         }
     
         const res = await fetch("http://localhost:3000/api/message", {
@@ -102,35 +103,13 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
        timer.current.classList.add("opacity-0");
     }
 
-    const stopRecording = () => {
+    const stopRecording = async () => {
         recorder.current.stop();
         cancelRecording();
     }
 
-    const startRecording = async () => {
-       const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true
-       });
-       const items: Blob[] = [];
 
-       recorder.current = new MediaRecorder(stream);
-
-        recorder.current.addEventListener("dataavailable", async (e) => {
-            items.push(e.data);
-
-            if (recorder.current.state === "inactive") {
-                const blob = new Blob(items, {
-                    type: "audio/webm"
-                });
-
-                const base64 = await convertTobase64(blob);
-                console.log(base64);
-            }
-        });
-        recorder.current.start();
-    }
-
-    const handleRecord = () => {
+    const handleRecord = async () => {
         setInterval(() => {
             setTime(prev => prev + 1);
         }, 1000);
@@ -139,7 +118,50 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
             timer.current.classList.remove("opacity-0");
         }
 
-        startRecording();
+        const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true
+           });
+        const items: Blob[] = [];
+    
+        recorder.current = new MediaRecorder(stream);
+    
+        recorder.current.addEventListener("dataavailable", async (e) => {
+            items.push(e.data);
+
+            if (recorder.current.state === "inactive") {
+                const blob = new Blob(items, {
+                    type: "audio/webm"
+                });
+
+                const audio = await convertTobase64(blob);
+                
+                const body = {
+                    senderId: currentUser.id,
+                    receiverId,
+                    audio
+                };
+        
+                const res = await fetch("http://localhost:3000/api/message", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${currentUser.token}`
+                    },
+                    body: JSON.stringify(body)
+                });
+                
+                const json = await res.json();
+        
+                if (!res.ok) {
+                    console.log(json.error);
+                }
+        
+                if (res.ok) {
+                    console.log(json);
+                }
+            }
+        });
+        recorder.current.start();
     }
     
 
