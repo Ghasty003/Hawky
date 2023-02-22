@@ -84,6 +84,7 @@ export interface MessagesProp {
     text: string;
     image: string;
     createdAt: string;
+    audio: string;
 }
 
 export interface MessagesContextType {
