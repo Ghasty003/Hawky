@@ -27,22 +27,11 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
 
     const userId = currentUser.id;
     const isMyId = friend.friendDetails.friendId === currentUser.id;
-    const uId = isMyId ? friend.friendDetails.friendId : currentUser.id;
-    // console.log(uId)
     const friendId = isMyId ? friend.friendDetails.userId : friend.friendDetails.friendId;
 
     const handleClick = async () => {
         setChat(friend as Friend);
-    
-        const req = new XMLHttpRequest();
-        req.open("GET", "http://localhost:3000/api/message/" + userId + "/" + friendId);
-        req.setRequestHeader("Authorization", `Bearer ${currentUser.token}`)
-        req.addEventListener("progress", e => {
-            console.log((e.loaded / e.total) * 100 + "%");
-        });
-        req.addEventListener("load", () => console.log("Done"));
-        req.send();
-        
+
         const res = await fetch("http://localhost:3000/api/message/"+ userId + "/" + friendId, {
             headers: {
                 "Authorization": `Bearer ${currentUser.token}`
@@ -55,10 +44,12 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
         }
   
         if (res.ok) {
+            console.log(messages)
           setMessages(json);
         }
     }
 
+    /*
     const member = [currentUser.id];
     friends.forEach(f => {
         if (f.friendDetails.friendId !== currentUser.id) {
@@ -76,7 +67,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
         setIsOnline(online)
         console.log(online)
     })
-   }, []);
+   }, []); */
 
    
 
