@@ -20,6 +20,8 @@ function Messages({ message }: {message: MessagesProp}) {
         div.current.scrollIntoView({behavior: "smooth"});
     }, [ messages ]);
 
+    console.log(messages)
+
     return (
         <div ref={div} className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
             <div className={`${isOwner && "flex flex-col items-end"}`}>
@@ -28,7 +30,8 @@ function Messages({ message }: {message: MessagesProp}) {
                 </div>}
                 { message.image && <img className='w-36 my-2' src={message.image} alt="" />}
                 {message.audio && <div>
-                    <audio src={message.audio}></audio>
+                    <p>audio</p>
+                    <audio src={message.audio} controls></audio>
                 </div>}
             </div>
         </div>
