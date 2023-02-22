@@ -1,12 +1,15 @@
 import React, { useContext, useRef } from 'react';
+import { CiPlay1, CiPause1 } from "react-icons/all";
 import AuthContext from '../contexts/AuthContext';
 import MessageContext from '../contexts/MessageContext';
 import { MessagesProp, User } from '../types';
-import groupchat from "../assets/groupchat.jpg";
+import voice from "../assets/voice.png";
 
 function Messages({ message }: {message: MessagesProp}) {
 
     const div = useRef<HTMLDivElement>(null!);
+
+    const [isPlaying, setIsPlaying] = React.useState(false);
 
     const { messages } = useContext(MessageContext);
     const { state } = useContext(AuthContext);
@@ -20,7 +23,17 @@ function Messages({ message }: {message: MessagesProp}) {
         div.current.scrollIntoView({behavior: "smooth"});
     }, [ messages ]);
 
-    console.log(messages)
+    const audio = useRef<HTMLAudioElement>(null!);
+
+    React.useEffect(() => {
+        audio.current?.addEventListener("play", () => {
+            setIsPlaying(true);
+        });
+
+        audio.current?.addEventListener("pause", () => {
+            setIsPlaying(false);
+        })
+    }, []);
 
     return (
         <div ref={div} className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
@@ -30,7 +43,14 @@ function Messages({ message }: {message: MessagesProp}) {
                 </div>}
                 { message.image && <img className='w-36 my-2' src={message.image} alt="" />}
                 {message.audio && <div>
-                    <audio src={message.audio} controls></audio>
+                    <audio ref={audio} className="hiddenj" src={message.audio} controls></audio>
+                    <div className='bg-primary w-64 flex items-center justify-between px-3 py-2 rounded-md'>
+                        {
+                            isPlaying ? <CiPause1 cursor={"pointer"} /> : <CiPlay1 cursor={"pointer"} />
+                        }
+                        <img src={voice} alt="audio" className='w-10' />
+                        <p>0:00</p>
+                    </div>
                 </div>}
             </div>
         </div>
