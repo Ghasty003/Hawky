@@ -38,7 +38,6 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
         req.addEventListener("progress", e => {
             console.log((e.loaded / e.total) * 100 + "%");
         });
-        req.addEventListener("load", () => console.log("Done"));
         req.addEventListener("load", () => {
             setMessages(JSON.parse(req.response));
         })
