@@ -89,6 +89,8 @@ export interface MessagesProp {
 export interface MessagesContextType {
     messages: MessagesProp[];
     setMessages: React.Dispatch<React.SetStateAction<MessagesProp[]>>;
+    loading: boolean;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface OnlineUserPtop {
