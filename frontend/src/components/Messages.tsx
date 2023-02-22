@@ -10,6 +10,7 @@ function Messages({ message }: {message: MessagesProp}) {
     const div = useRef<HTMLDivElement>(null!);
 
     const [isPlaying, setIsPlaying] = React.useState(false);
+    const [time, setTime] = React.useState("00:00");
 
     const { messages } = useContext(MessageContext);
     const { state } = useContext(AuthContext);
@@ -33,6 +34,18 @@ function Messages({ message }: {message: MessagesProp}) {
         audio.current?.addEventListener("pause", () => {
             setIsPlaying(false);
         })
+
+        function formatTime(time: number) {
+            const minute = Math.floor(time / 60);
+            const minutes = (minute >= 10) ? minute : "0" + minute;
+            const second = Math.floor(time % 60);
+            const seconds = (second >= 10) ? second : "0" + second;
+            return minutes + ":" + seconds;
+        }
+
+        audio.current?.addEventListener("timeupdate", () => {
+            setTime(formatTime(audio.current.currentTime))
+        })
     }, []);
 
     const handlePause = () => {
@@ -51,13 +64,13 @@ function Messages({ message }: {message: MessagesProp}) {
                 </div>}
                 { message.image && <img className='w-36 my-2' src={message.image} alt="" />}
                 {message.audio && <div>
-                    <audio ref={audio} className="hiddenj" src={message.audio} controls></audio>
+                    <audio ref={audio} className="hidden" src={message.audio} controls></audio>
                     <div className='bg-primary w-64 flex items-center justify-between px-3 py-2 rounded-md'>
                         {
                             isPlaying ? <CiPause1 onClick={handlePause} cursor={"pointer"} /> : <CiPlay1 onClick={handlePlay} cursor={"pointer"} />
                         }
                         <img src={voice} alt="audio" className='w-10' />
-                        <p>0:00</p>
+                        <p>{ time }</p>
                     </div>
                 </div>}
             </div>
