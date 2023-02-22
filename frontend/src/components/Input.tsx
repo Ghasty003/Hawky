@@ -28,7 +28,6 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const [text, setText] = useState<string>("");
     const [image, setImage] = useState<string>("");
-    const [audio, setAudio] = useState<string>("");
 
     const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -60,7 +59,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
         e.preventDefault();
         setImage("");
 
-        if (!text && !image && !audio) {
+        if (!text && !image) {
             return;
         }
         
