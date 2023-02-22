@@ -92,6 +92,17 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
         }
     }
 
+    let timer = React.useRef<any>(null!);
+
+    const stopRecording = () => {
+        clearTimeout(timer.current);
+    }
+
+    const startRecording = async () => {
+        timer.current = setTimeout(() => {
+            console.log("start recording")
+        }, 2000);
+    }
     
 
     return (
@@ -104,12 +115,16 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                         </div>
 
                         <div className='flex items-center gap-5 justify-between w-40'>
-                            <label title='choose image' className='cursor-pointer' htmlFor="image">
+                            <label data-tooltip='choose image' className='tooltip cursor-pointer' htmlFor="image">
                                 <img src={img} alt="image" />
                             </label>
                             <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
-                            <AiFillAudio size={25} cursor="pointer" color="#5b5d8d" />
-                            <button title='send' className='bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
+                            <div data-tooltip="voice recording" className='tooltip'>
+                                <AiFillAudio className='tool' onMouseLeave={stopRecording} 
+                                    onMouseMove={stopRecording} onMouseUp={stopRecording} onMouseEnter={startRecording}
+                                size={25} cursor="pointer" color="#5b5d8d" />
+                                </div>
+                            <button data-tooltip='send message' className='tooltip bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
                         </div>
                     </>
                 )
