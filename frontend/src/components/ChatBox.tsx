@@ -11,7 +11,7 @@ import Messages from './Messages';
 
 function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
 
-    const { messages } = useContext(MessageContext);
+    const { messages, setMessages } = useContext(MessageContext);
     const { chat, setChat } = useContext(ChatContext);
 
     const Div = useRef<HTMLDivElement>(null!);
@@ -20,6 +20,7 @@ function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
         document.addEventListener("click", (e: Event) => {
            if (!(e.target as HTMLDivElement).classList.contains("l") && !Div.current.contains(e.target as Node)) {
                 setChat(null!);
+                setMessages([]);
            }
         })
     }, []);

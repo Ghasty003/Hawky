@@ -34,6 +34,14 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
     const handleClick = async () => {
         setChat(friend as Friend);
     
+        const req = new XMLHttpRequest();
+        req.open("GET", "http://localhost:3000/api/message/" + userId + "/" + friendId);
+        req.setRequestHeader("Authorization", `Bearer ${currentUser.token}`)
+        req.addEventListener("progress", e => {
+            console.log((e.loaded / e.total) * 100 + "%");
+        });
+        req.addEventListener("load", () => console.log("Done"));
+        req.send();
         
         const res = await fetch("http://localhost:3000/api/message/"+ userId + "/" + friendId, {
             headers: {
