@@ -39,7 +39,9 @@ function Messages({ message }: {message: MessagesProp}) {
         audio.current.pause();
     }
 
-    
+    const handlePlay = () => {
+        audio.current.play();
+    }
 
     return (
         <div ref={div} className={`${isOwner ? "owner" : "not-owner"} px-2 my-3`}>
@@ -52,7 +54,7 @@ function Messages({ message }: {message: MessagesProp}) {
                     <audio ref={audio} className="hiddenj" src={message.audio} controls></audio>
                     <div className='bg-primary w-64 flex items-center justify-between px-3 py-2 rounded-md'>
                         {
-                            isPlaying ? <CiPause1 onClick={handlePause} cursor={"pointer"} /> : <CiPlay1 cursor={"pointer"} />
+                            isPlaying ? <CiPause1 onClick={handlePause} cursor={"pointer"} /> : <CiPlay1 onClick={handlePlay} cursor={"pointer"} />
                         }
                         <img src={voice} alt="audio" className='w-10' />
                         <p>0:00</p>
