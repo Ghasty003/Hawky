@@ -119,11 +119,25 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                                 <img src={img} alt="image" />
                             </label>
                             <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
-                            <div data-tooltip="voice recording" className='tooltip'>
-                                <AiFillAudio className='tool' onMouseLeave={stopRecording} 
-                                    onMouseMove={stopRecording} onMouseUp={stopRecording} onMouseEnter={startRecording}
-                                size={25} cursor="pointer" color="#5b5d8d" />
+
+                            <div className='relative'>
+                                <div className='absolute bg-primary -top-40 w-40 -left-20 rounded-md p-3'>
+                                    <p className='text-center'>Recording..</p>
+                                    <div className='flex justify-between my-3'>
+                                        <p className='cursor-pointer'>Cancel</p>
+                                        <p className='cursor-pointer'>Stop</p>
+                                    </div>
+
+                                    <div className='text-center'>Timer</div>
                                 </div>
+
+                                <div data-tooltip="voice recording" className='tooltip'>
+                                    <AiFillAudio className='active:scale-150 duration-300' onMouseLeave={stopRecording} 
+                                        onMouseMove={stopRecording} onMouseUp={stopRecording} onMouseEnter={startRecording}
+                                        size={25} cursor="pointer" color="#5b5d8d" />
+                                </div>
+                            </div>
+
                             <button data-tooltip='send message' className='tooltip bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
                         </div>
                     </>
