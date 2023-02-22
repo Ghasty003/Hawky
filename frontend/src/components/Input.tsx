@@ -153,10 +153,12 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                 const json = await res.json();
         
                 if (!res.ok) {
+                    cancelRecording();
                     console.log(json.error);
                 }
         
                 if (res.ok) {
+                    cancelRecording()
                     setMessages(prev => [...prev, json]);
                 }
             }
