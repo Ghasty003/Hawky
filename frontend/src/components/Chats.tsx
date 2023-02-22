@@ -13,7 +13,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
 
     const { state } = useContext(AuthContext);
     const { setChat, chatDiv } = useContext(ChatContext);
-    const { setMessages, messages  } = useContext(MessageContext);
+    const { setMessages, messages, setLoading } = useContext(MessageContext);
     const { friends } = useContext(FriendContext);
 
     const [lastMessage, setLastMessage] = useState("");
@@ -39,6 +39,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
             console.log((e.loaded / e.total) * 100 + "%");
         });
         req.addEventListener("load", () => {
+            setLoading(true);
             setMessages(JSON.parse(req.response));
         })
         req.send();
