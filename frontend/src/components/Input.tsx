@@ -95,12 +95,14 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
     const timer = React.useRef<HTMLDivElement>(null!);
     const recorder = React.useRef<MediaRecorder>(null!);
+    const interval = React.useRef<unknown>(null!);
     const [time, setTime] = useState(0);
 
 
     const cancelRecording = () => {
        setTime(0);
        timer.current.classList.add("opacity-0");
+       clearInterval(interval.current as any);
     }
 
     const stopRecording = async () => {
@@ -110,7 +112,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
 
 
     const handleRecord = async () => {
-        setInterval(() => {
+        interval.current = setInterval(() => {
             setTime(prev => prev + 1);
         }, 1000);
 
@@ -158,7 +160,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                 }
         
                 if (res.ok) {
-                    cancelRecording()
+                    cancelRecording();
                     setMessages(prev => [...prev, json]);
                 }
             }
