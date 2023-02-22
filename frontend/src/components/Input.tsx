@@ -157,7 +157,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                 }
         
                 if (res.ok) {
-                    console.log(json);
+                    setMessages(prev => [...prev, json]);
                 }
             }
         });
