@@ -11,7 +11,7 @@ export const MessageContextProvider: React.FC<ProviderProp> = ({ children }) => 
     const [loading, setLoading] = useState<boolean>(false);
 
     return (
-        <MessageContext.Provider value={{messages, setMessages, loading}}>
+        <MessageContext.Provider value={{messages, setMessages, loading, setLoading}}>
             { children }
         </MessageContext.Provider>
     )
