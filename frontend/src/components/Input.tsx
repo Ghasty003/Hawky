@@ -92,16 +92,54 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
         }
     }
 
-    let timer = React.useRef<any>(null!);
+    const timer = React.useRef<HTMLDivElement>(null!);
+    const recorder = React.useRef<MediaRecorder>(null!);
+    const [time, setTime] = useState(0);
+
+
+    const cancelRecording = () => {
+       setTime(0);
+       timer.current.classList.add("opacity-0");
+    }
 
     const stopRecording = () => {
-        clearTimeout(timer.current);
+        recorder.current.stop();
+        cancelRecording();
     }
 
     const startRecording = async () => {
-        timer.current = setTimeout(() => {
-            console.log("start recording")
-        }, 2000);
+       const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true
+       });
+       const items: Blob[] = [];
+
+       recorder.current = new MediaRecorder(stream);
+
+        recorder.current.addEventListener("dataavailable", async (e) => {
+            items.push(e.data);
+
+            if (recorder.current.state === "inactive") {
+                const blob = new Blob(items, {
+                    type: "audio/webm"
+                });
+
+                const base64 = await convertTobase64(blob);
+                console.log(base64);
+            }
+        });
+        recorder.current.start();
+    }
+
+    const handleRecord = () => {
+        setInterval(() => {
+            setTime(prev => prev + 1);
+        }, 1000);
+
+        if (timer.current.classList.contains("opacity-0")) {
+            timer.current.classList.remove("opacity-0");
+        }
+
+        startRecording();
     }
     
 
@@ -121,20 +159,18 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                             <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
 
                             <div className='relative'>
-                                <div className='absolute bg-primary -top-40 w-40 -left-20 rounded-md p-3'>
+                                <div ref={timer} className='absolute opacity-0 bg-primary -top-40 w-40 -left-20 rounded-md p-3'>
                                     <p className='text-center'>Recording..</p>
                                     <div className='flex justify-between my-3'>
-                                        <p className='cursor-pointer'>Cancel</p>
-                                        <p className='cursor-pointer'>Stop</p>
+                                        <p onClick={cancelRecording} className='cursor-pointer'>Cancel</p>
+                                        <p onClick={stopRecording} className='cursor-pointer'>Stop</p>
                                     </div>
 
-                                    <div className='text-center'>Timer</div>
+                                    <div className='text-center'>{ time + "s" }</div>
                                 </div>
 
-                                <div data-tooltip="voice recording" className='tooltip'>
-                                    <AiFillAudio className='active:scale-150 duration-300' onMouseLeave={stopRecording} 
-                                        onMouseMove={stopRecording} onMouseUp={stopRecording} onMouseEnter={startRecording}
-                                        size={25} cursor="pointer" color="#5b5d8d" />
+                                <div onClick={handleRecord} data-tooltip="voice recording" className='tooltip'>
+                                    <AiFillAudio className='active:scale-150 duration-300' size={25} cursor="pointer" color="#5b5d8d" />
                                 </div>
                             </div>
 
