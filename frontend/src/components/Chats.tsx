@@ -36,7 +36,7 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
         req.open("GET", "http://localhost:3000/api/message/" + userId + "/" + friendId);
         req.setRequestHeader("Authorization", `Bearer ${currentUser.token}`)
         req.addEventListener("progress", e => {
-            console.log((e.loaded / e.total) * 100 + "%");
+            // console.log((e.loaded / e.total) * 100 + "%");
         });
         req.addEventListener("load", () => {
             setLoading(true);
