@@ -139,7 +139,9 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                 const body = {
                     senderId: currentUser.id,
                     receiverId,
-                    audio
+                    audio,
+                    text: "",
+                    image: ""
                 };
         
                 const res = await fetch("http://localhost:3000/api/message", {
