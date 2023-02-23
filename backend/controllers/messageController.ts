@@ -48,11 +48,13 @@ export async function getLastMessage(req: Request | any, res: Response) {
                 $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                 },
             ],
-        }).sort({createdAt: -1}).select("text image").where("senderId").ne(uId);
+        }).sort({createdAt: -1}).select("text image audio").where("senderId").ne(uId);
 
-        if (chats?.text === ""  || chats?.image) {
-            return res.status(200).json({text: "image-alt-send"})
+
+        if (chats?.text === ""  || chats?.image || chats?.audio) {
+            return res.status(200).json({text: "media-alt-send"})
         }
+
         
         res.status(200).json(chats);
     } catch (error) {

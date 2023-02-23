@@ -63,9 +63,9 @@ function getLastMessage(req, res) {
                         $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                     },
                 ],
-            }).sort({ createdAt: -1 }).select("text image").where("senderId").ne(uId);
-            if ((chats === null || chats === void 0 ? void 0 : chats.text) === "" || (chats === null || chats === void 0 ? void 0 : chats.image)) {
-                return res.status(200).json({ text: "image-alt-send" });
+            }).sort({ createdAt: -1 }).select("text image audio").where("senderId").ne(uId);
+            if ((chats === null || chats === void 0 ? void 0 : chats.text) === "" || (chats === null || chats === void 0 ? void 0 : chats.image) || (chats === null || chats === void 0 ? void 0 : chats.audio)) {
+                return res.status(200).json({ text: "media-alt-send" });
             }
             res.status(200).json(chats);
         }
