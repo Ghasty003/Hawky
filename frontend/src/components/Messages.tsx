@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import { CiPlay1, CiPause1 } from "react-icons/all";
+import { FiPlay, CiPause1 } from "react-icons/all";
 import AuthContext from '../contexts/AuthContext';
 import MessageContext from '../contexts/MessageContext';
 import { MessagesProp, User } from '../types';
@@ -67,7 +67,7 @@ function Messages({ message }: {message: MessagesProp}) {
                     <audio ref={audio} className="hidden" src={message.audio} controls></audio>
                     <div className='bg-primary w-64 flex items-center justify-between px-3 py-2 rounded-md'>
                         {
-                            isPlaying ? <CiPause1 onClick={handlePause} cursor={"pointer"} /> : <CiPlay1 onClick={handlePlay} cursor={"pointer"} />
+                            isPlaying ? <CiPause1 onClick={handlePause} cursor={"pointer"} /> : <FiPlay onClick={handlePlay} cursor={"pointer"} />
                         }
                         <img src={voice} alt="audio" className='w-10' />
                         <p>{ time }</p>
