@@ -92,6 +92,8 @@ export interface MessagesContextType {
     setMessages: React.Dispatch<React.SetStateAction<MessagesProp[]>>;
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    queryNumber: number;
+    setQueryNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface OnlineUserPtop {
