@@ -31,7 +31,7 @@ function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
             <Header />
 
             <div className='custom-height bg-empty-chat overflow-auto'>
-                <p className="text-center text-lg text-primary italic cursor-pointer">Previous messages</p>
+                {/* <p className="text-center text-lg text-primary italic cursor-pointer">Previous messages</p> */}
                 {
                     chat ? messages.map(message => (
                         <Messages key={message._id} message={message} />
