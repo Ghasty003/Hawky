@@ -11,12 +11,6 @@ export const MessageContextProvider: React.FC<ProviderProp> = ({ children }) => 
     const [loading, setLoading] = useState<boolean>(false);
     const [queryNumber, setQueryNumber] = useState<number>(0);
 
-    useEffect(() => {
-        if (messages.length > 10) {
-            setQueryNumber(prev => prev + 1);
-        }
-    }, []);
-
     return (
         <MessageContext.Provider value={{messages, setMessages, loading, setLoading, queryNumber, setQueryNumber}}>
             { children }
