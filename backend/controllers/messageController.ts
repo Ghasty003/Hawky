@@ -14,8 +14,11 @@ export async function addMessage(req: Request, res: Response) {
   
 export async function getMessages(req: Request, res: Response ) {
     const { senderId, receiverId } = req.params;
+
+    /*
+    @params
     const page = (req.query.chats || 0) as number;
-    const chatsPerFetch = 10;
+    const chatsPerFetch = 10; */
 
     try {
         const chats = await Message.find({
@@ -27,7 +30,7 @@ export async function getMessages(req: Request, res: Response ) {
                 $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                 },
             ],
-        }).sort({createdAt: 1}).skip(page * chatsPerFetch).limit(chatsPerFetch);
+        }).sort({createdAt: 1});
         res.status(200).json(chats);
     } catch (error) {
         res.status(400).json({ error: (error as Error).message });
