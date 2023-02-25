@@ -30,6 +30,8 @@ exports.addMessage = addMessage;
 function getMessages(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { senderId, receiverId } = req.params;
+        const page = (req.query.chats || 0);
+        const chatsPerFetch = 10;
         try {
             const chats = yield messageModel_1.default.find({
                 $and: [
@@ -40,7 +42,7 @@ function getMessages(req, res) {
                         $or: [{ receiverId: receiverId }, { senderId: receiverId }],
                     },
                 ],
-            });
+            }).sort({ createdAt: 1 }).skip(page * chatsPerFetch).limit(chatsPerFetch);
             res.status(200).json(chats);
         }
         catch (error) {
