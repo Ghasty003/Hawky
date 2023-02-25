@@ -11,10 +11,10 @@ function NavBar() {
             </Link>
 
             <div className='flex items-center gap-6'>
-                <button className='bg-login text-gray-600 px-4 py-2 rounded-lg font-bold drop-shadow-2xl active:scale-75 duration-300'>
+                <button className='bg-login text-gray-600 text-sm sm:text-base sm:px-4 p-2 sm:py-2 rounded-lg font-bold drop-shadow-2xl active:scale-75 duration-300'>
                     <Link to="/login">Login</Link>
                 </button>
-                <button className='bg-register text-gray-600 px-4 py-2 rounded-lg font-bold drop-shadow-2xl active:scale-75 duration-300'>
+                <button className='bg-register text-gray-600 text-sm sm:text-base sm:px-4 p-2 sm:py-2 rounded-lg font-bold drop-shadow-2xl active:scale-75 duration-300'>
                     <Link to="/register">Register</Link>
                 </button>
             </div>
