@@ -75,13 +75,13 @@ function Register() {
         <div className='pb-10'>
             <NavBar />
 
-            <div className='flex justify-around items-center mt-20'>
+            <div className='flex flex-wrap justify-around items-center mt-20'>
                 <div>
                     <img className='w-[340px]' src={register} alt="register" />
-                    <p className='text-2xl'>Register with us to enjoy realtime chats like no other.</p>
+                    <p className='sm:text-2xl text-lg text-center'>Register with us to enjoy realtime chats like no other.</p>
                 </div>
 
-                <div className='bg-navbg text-center w-96 h-[500px] flex flex-col rounded-lg p-6'>
+                <div className='bg-navbg text-center sm:mt-0 mt-8 sm:w-96 h-[500px] flex flex-col rounded-lg p-6'>
                     <h2 className='text-2xl font-heading'>Register</h2>
 
                     <form onSubmit={handleSubmit} className='mt-6'>
