@@ -9,11 +9,11 @@ import { DivProps } from '../types';
 
 function Div({headingText, text, img}: DivProps) {
     return (
-        <div className='flex items-center justify-around mb-20 even:flex-row-reverse'>
-            <img className='w-[300px] rounded-md' src={img} alt="chat" />
+        <div className='flex items-center flex-wrap justify-around mb-20 even:flex-row-reverse'>
+            <img className='sm:w-[300px] w-72 rounded-md' src={img} alt="chat" />
             <div className='flex flex-col gap-6'>
-                <h2 className='font-heading text-3xl'>{ headingText }</h2>
-                <p className='text-lg'>{ text }</p>
+                <h2 className='font-heading text-2xl text-center sm:text-3xl sm:text-start'>{ headingText }</h2>
+                <p className='sm:text-lg sm:text-start text-base text-center'>{ text }</p>
             </div>
         </div>
     )
@@ -43,7 +43,7 @@ function LandingPage() {
 
             <div className='w-3/4 m-auto h-[2px] bg-white'></div>
 
-            <div className='flex justify-center items-center my-10 text-lg'>
+            <div className='flex justify-center items-center my-10 text-base text-center sm:text-lg'>
                 <p>Copyright &copy; Ghasty, 2023. All rights reserved. </p>
             </div>
         </div>
