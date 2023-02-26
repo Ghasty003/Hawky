@@ -12,8 +12,12 @@ export const ChatContextProvider: React.FC<ProviderProp> = ({ children }) => {
 
     const chatDiv = React.useRef<HTMLDivElement>(null!);
 
+    const showChat = () => {
+        return console.log("show chat");
+    }
+
     return (
-        <ChatContext.Provider value={{ chat, setChat, chatDiv }}>
+        <ChatContext.Provider value={{ chat, setChat, chatDiv, showChat }}>
             { children }
         </ChatContext.Provider>
     )
