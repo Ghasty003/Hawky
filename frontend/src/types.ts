@@ -75,6 +75,7 @@ export interface ChatContextType {
     chat: Friend;
     setChat: React.Dispatch<React.SetStateAction<Friend>>;
     chatDiv: React.MutableRefObject<HTMLDivElement>;
+    showChat: () => void;
 }
 
 export interface MessagesProp {
