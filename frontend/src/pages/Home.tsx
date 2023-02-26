@@ -24,7 +24,7 @@ function Home() {
     const currentUser = user as User;
 
     React.useEffect(() => {
-        socket.current = io("http://localhost:3000");
+        socket.current = io("https://hawky.onrender.com/");
         socket.current.emit("add-new-user", currentUser?.id);
         socket.current.on("get-online-users", (activeUsers) => {
             setOnlineUser(activeUsers);
