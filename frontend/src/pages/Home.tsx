@@ -58,17 +58,18 @@ function Home() {
     return (
         <div className='flex justify-center items-center h-screen'>
             {
-                window.innerWidth > 1200 && (
+                window.innerWidth > 1200 ? (
                     <div className='flex justify-center w-[90%] h-[500px]'>
                         <SideBar />
                         <ChatBox socket={socket} />
                     </div>
-                )
+                ) : <>
+                {
+                    render ? <SideBar /> : <div className='flex justify-center w-full h-[500px]'><ChatBox socket={socket} /></div>
+                }
+                </>
             }
 
-            {
-                render ? <SideBar /> : <div className='flex justify-center w-full h-[500px]'><ChatBox socket={socket} /></div>
-            }
         </div>
     );
 }
