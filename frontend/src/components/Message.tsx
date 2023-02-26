@@ -9,10 +9,9 @@ import { FriendType, User } from '../types';
 interface Props {
     setFriend: React.Dispatch<React.SetStateAction<User>>;
     friend: User;
-    onlineUser: never[];
 }
 
-function Message({ setFriend, friend, onlineUser }: Props) {
+function Message({ setFriend, friend }: Props) {
 
     const [text, setText] = useState("");
     const [err, setErr] = useState("");
@@ -119,7 +118,7 @@ function Message({ setFriend, friend, onlineUser }: Props) {
             <div className='flex flex-col gap-5 mt-4'>
                 {
                     friends.map(friend => (
-                        <Chats key={friend._id} friend={friend} onlineUser={onlineUser} />
+                        <Chats key={friend._id} friend={friend} />
                     ))
                 }
             </div>

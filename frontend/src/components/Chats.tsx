@@ -7,7 +7,7 @@ import { Friend, FriendProp, User } from '../types';
 import imagechat from "../assets/imagechat.png";
 import FriendContext from '../contexts/FriendContext';
 
-const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, onlineUser }) => {
+const Chats: React.FC<{friend: FriendProp }> = ({ friend }) => {
 
     const isEmpty = friend.friendDetails.friendImage === "";
 
@@ -43,6 +43,10 @@ const Chats: React.FC<{friend: FriendProp, onlineUser: never[] }> = ({ friend, o
             setMessages(JSON.parse(req.response));
         })
         req.send();
+
+        if (window.innerWidth <= 1200) {
+            
+        }
     }
 
     /*

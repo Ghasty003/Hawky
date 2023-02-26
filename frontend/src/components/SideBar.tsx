@@ -6,7 +6,7 @@ import { FriendType, Type, User } from '../types';
 import FriendContext from '../contexts/FriendContext';
 import Message from './Message';
 
-function SideBar({ onlineUser }: { onlineUser: never[] }) {
+function SideBar() {
 
     const [display, setDisplay] = useState(false);
     const { dispatch, state } = useContext(AuthContext);
@@ -118,7 +118,7 @@ function SideBar({ onlineUser }: { onlineUser: never[] }) {
                 </div>
             </div>
 
-           <Message setFriend={setFriend} friend={friend} onlineUser={onlineUser} />
+           <Message setFriend={setFriend} friend={friend} />
 
         </div>
     );
