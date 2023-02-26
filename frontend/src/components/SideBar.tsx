@@ -127,7 +127,7 @@ function SideBar() {
                 </div>
             </div>
 
-           <Message setFriend={setFriend} friend={friend} />
+           <Message setFriend={setFriend} friend={friend} toggleShow={toggleShow} />
 
         </div>
     );
