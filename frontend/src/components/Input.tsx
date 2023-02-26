@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import InputEmoji from "react-input-emoji";
-import { AiFillAudio } from "react-icons/all";
+import { AiFillAudio, FiSend } from "react-icons/all";
 import { Socket } from 'socket.io-client';
 import img from "../assets/img.png";
 import AuthContext from '../contexts/AuthContext';
@@ -179,9 +179,9 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                             <InputEmoji value={text} onChange={handleChange}  />
                         </div>
 
-                        <div className='flex items-center gap-5 justify-between w-40'>
+                        <div className='flex items-center mobile:gap-1 gap-5 justify-between w-40 mobile:w-32'>
                             <label data-tooltip='choose image' className='tooltip cursor-pointer' htmlFor="image">
-                                <img src={img} alt="image" />
+                                <img className='mobile:w-5' src={img} alt="image" />
                             </label>
                             <input onChange={e => handleUpload(e)} className='hidden' type="file" id="image" />
 
@@ -197,11 +197,11 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                                 </div>
 
                                 <div onClick={handleRecord} data-tooltip="voice recording" className='tooltip'>
-                                    <AiFillAudio className='active:scale-150 duration-300' size={25} cursor="pointer" color="#5b5d8d" />
+                                    <AiFillAudio className='active:scale-150 duration-300 text-2xl mobile:text-lg' cursor="pointer" color="#5b5d8d" />
                                 </div>
                             </div>
 
-                            <button data-tooltip='send message' className='tooltip bg-register px-3 py-1 mr-2 rounded-md'>Send</button>
+                            <button data-tooltip='send message' className='tooltip text-2xl text-primary mobile:text-lg mobile:mr-2 mr-5 rounded-md'><FiSend /></button>
                         </div>
                     </>
                 )
