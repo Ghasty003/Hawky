@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { IoArrowBackSharp } from "react-icons/all";
 import videocall from "../assets/cam.png";
 import more from "../assets/more.png";
 import AuthContext from "../contexts/AuthContext";
@@ -17,6 +18,7 @@ function Header() {
 
     return (
         <div className='bg-[#3e3c61] flex justify-between items-center h-10 px-2'>
+            <IoArrowBackSharp cursor={"Pointer"} className="mobile:block hidden" />
             <p>{ isMyUsername ? chat.friendDetails.userName : chat?.friendDetails.friendUsername }</p>
 
             <div className='flex items-center'>
