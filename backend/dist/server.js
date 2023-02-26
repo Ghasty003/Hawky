@@ -33,6 +33,11 @@ class Connection {
         dotenv_1.default.config();
         this.activeUsers = [];
     }
+    test() {
+        this.app.get("/", (req, res) => {
+            res.status(200).json("Testing server!");
+        });
+    }
     useMiddleWares() {
         this.app.use(express_1.default.json({ limit: "50mb" }));
         this.app.use((0, cors_1.default)());
@@ -82,4 +87,5 @@ const server = new Connection();
 server.useMiddleWares();
 server.initializeRoutes();
 server.initSocketConnection();
+server.test();
 server.connectToDB();

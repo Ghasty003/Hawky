@@ -34,6 +34,12 @@ class Connection {
         this.activeUsers = [];
     }
 
+    public test() {
+        this.app.get("/", (req, res) => {
+            res.status(200).json("Testing server!");
+        })
+    }
+
     public useMiddleWares() {
         this.app.use(express.json({limit: "50mb"}));
         this.app.use(cors());
@@ -90,4 +96,5 @@ const server = new Connection();
 server.useMiddleWares();
 server.initializeRoutes();
 server.initSocketConnection();
+server.test();
 server.connectToDB();
