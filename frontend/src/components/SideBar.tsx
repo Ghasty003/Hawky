@@ -14,6 +14,7 @@ function SideBar() {
     const [friend, setFriend] = useState<User>(null!);
 
     const div = useRef<HTMLDivElement>(null!);
+    const side = useRef<HTMLDivElement>(null!);
 
     const { user } = state;
 
@@ -77,9 +78,17 @@ function SideBar() {
         getFriends();
     }, []);
 
+    const toggleShow = () => {
+        if (side.current.classList.contains("mobile:invisible")) {
+            side.current.classList.remove("mobile:invisible");
+        } else {
+            side.current.classList.add("mobile:invisible");
+        }
+    }
+
     return (
         <div className='flex items-start justify-center'>
-            <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg mobile:invisible mobile:absolute z-40 mobile:right-[50%]'>
+            <div ref={side} className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg mobile:invisible mobile:absolute z-40 mobile:right-[50%]'>
                 <div className='flex items-center gap-1'>
                     <img className='w-10 rounded-full object-cover' src={isEmpty ? avatar : currentUser.displayPicture} alt="" />
                     <p>{ currentUser.userName }</p>
