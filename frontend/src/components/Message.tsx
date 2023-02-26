@@ -89,7 +89,7 @@ function Message({ setFriend, friend }: Props) {
     }
 
     return (
-        <div className='px-5 bg-secondary h-[500px] overflow-auto'>
+        <div className='mobile:px-3 px-5 bg-secondary h-[500px] overflow-auto'>
             <div className='sticky top-0 bg-secondary'>
                 
                 <div className='mb-6 sticky mt-1 flex justify-between items-center'>
