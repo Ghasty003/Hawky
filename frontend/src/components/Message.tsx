@@ -9,9 +9,10 @@ import { FriendType, User } from '../types';
 interface Props {
     setFriend: React.Dispatch<React.SetStateAction<User>>;
     friend: User;
+    toggleShow: () => void;
 }
 
-function Message({ setFriend, friend }: Props) {
+function Message({ setFriend, friend, toggleShow }: Props) {
 
     const [text, setText] = useState("");
     const [err, setErr] = useState("");
@@ -94,7 +95,7 @@ function Message({ setFriend, friend }: Props) {
                 
                 <div className='mb-6 sticky mt-1 flex justify-between items-center'>
                     <h2 className='text-2xl'>Messages</h2>
-                    <RxHamburgerMenu size={23} cursor="pointer" />
+                    <RxHamburgerMenu onClick={toggleShow} size={23} cursor="pointer" />
                 </div>
 
                 <form onSubmit={handleSearch}>
