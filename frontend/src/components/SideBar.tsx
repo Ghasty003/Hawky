@@ -78,8 +78,8 @@ function SideBar() {
     }, []);
 
     return (
-        <div className='flex items-start'>
-            <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg'>
+        <div className='flex items-start justify-center'>
+            <div className='bg-[#3e3c61] p-5 w-fit h-[500px] rounded-bl-lg rounded-tl-lg mobile:invisible mobile:absolute z-40 mobile:right-[50%]'>
                 <div className='flex items-center gap-1'>
                     <img className='w-10 rounded-full object-cover' src={isEmpty ? avatar : currentUser.displayPicture} alt="" />
                     <p>{ currentUser.userName }</p>
