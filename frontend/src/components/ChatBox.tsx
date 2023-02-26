@@ -18,7 +18,7 @@ function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
 
     useEffect(() => {
         document.addEventListener("click", (e: Event) => {
-           if (!(e.target as HTMLDivElement).classList.contains("l") && !Div.current.contains(e.target as Node)) {
+           if (!(e.target as HTMLDivElement).classList.contains("l") && !Div.current.contains(e.target as Node) && window.innerWidth > 1200) {
                 setChat(null!);
                 setMessages([]);
            }
