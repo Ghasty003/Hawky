@@ -27,7 +27,7 @@ class Connection {
         this.http = http.createServer(this.app);
         this.io = new Server(this.http, {
             cors: {
-                origin: "http://localhost:5173"
+                origin: "*"
             }
         });
         dotevn.config();
