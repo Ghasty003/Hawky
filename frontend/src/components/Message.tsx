@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { FcSearch } from "react-icons/all";
+import { FcSearch, RxHamburgerMenu } from "react-icons/all";
 import Chats from './Chats';
 import avatar from "../assets/avatar-food.png";
 import AuthContext from '../contexts/AuthContext';
@@ -91,7 +91,11 @@ function Message({ setFriend, friend }: Props) {
     return (
         <div className='px-5 bg-secondary h-[500px] overflow-auto'>
             <div className='sticky top-0 bg-secondary'>
-                <h2 className='text-2xl mb-6 sticky mt-1'>Messages</h2>
+                
+                <div className='mb-6 sticky mt-1 flex justify-between items-center'>
+                    <h2 className='text-2xl'>Messages</h2>
+                    <RxHamburgerMenu size={23} cursor="pointer" />
+                </div>
 
                 <form onSubmit={handleSearch}>
                     <p className='ml-1'>Find a User</p>
