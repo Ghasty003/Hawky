@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import ChatBox from '../components/ChatBox';
 import SideBar from '../components/SideBar';
@@ -7,6 +7,8 @@ import MessageContext from '../contexts/MessageContext';
 import { User } from '../types';
 
 function Home() {
+
+    const [display, setDisplay] = useState(true);
 
     const socket = React.useRef<Socket>(null!);
 
@@ -37,14 +39,24 @@ function Home() {
 
         socket.current.on("is-online", data => {
             console.log(data)
+        });
+
+        if (window.innerWidth <= 1200) {
+            setDisplay(false);
+        }
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth <= 1200) {
+                setDisplay(false);
+            }
         })
     }, []);
 
     return (
         <div className='flex justify-center items-center h-screen'>
-            <div className='flex w-[90%] h-[500px]'>
+            <div className='flex justify-center w-[90%] h-[500px]'>
                 <SideBar onlineUser={onlineUser} />
-                <ChatBox socket={socket} />
+                {display && <ChatBox socket={socket} />}
             </div>
         </div>
     );
