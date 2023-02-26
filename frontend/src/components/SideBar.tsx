@@ -96,7 +96,7 @@ function SideBar() {
 
                 {
                     display && (
-                        <div className='fixed left-1/2 -translate-x-1/2 z-10 bg-primary px-6 py-4 rounded-md fill'>
+                        <div className='fixed left-1/2 mobile:w-80 -translate-x-1/2 z-10 bg-primary px-6 py-4 rounded-md fill'>
                             <p className='text-lg'>Are you sure you want to delete account?</p>
                             
                             <div className='flex items-center justify-end gap-4 mt-3 p-2'>
