@@ -6,11 +6,9 @@ import AuthContext from '../contexts/AuthContext';
 import MessageContext from '../contexts/MessageContext';
 import { User } from '../types';
 
-function Home() {
+function Home({ socket }: {socket: React.MutableRefObject<Socket> }) {
 
     const [display, setDisplay] = useState(true);
-
-    const socket = React.useRef<Socket>(null!);
 
     const { setMessages } = React.useContext(MessageContext);
 
