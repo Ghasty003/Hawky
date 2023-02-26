@@ -80,7 +80,7 @@ class Connection {
     }
 
     public async connectToDB() {
-        await mongoose.connect("mongodb://0.0.0.0:27017/chatapp2");
+        await mongoose.connect(process.env.DB_URI as string);
         this.listen();
     }
 }

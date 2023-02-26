@@ -73,7 +73,7 @@ class Connection {
     }
     connectToDB() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield mongoose_1.default.connect("mongodb://0.0.0.0:27017/chatapp2");
+            yield mongoose_1.default.connect(process.env.DB_URI);
             this.listen();
         });
     }
