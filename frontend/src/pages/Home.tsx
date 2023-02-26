@@ -67,7 +67,7 @@ function Home() {
             }
 
             {
-                render ? <SideBar /> : <ChatBox socket={socket} />
+                render ? <SideBar /> : <div className='flex justify-center w-full h-[500px]'><ChatBox socket={socket} /></div>
             }
         </div>
     );
