@@ -55,10 +55,18 @@ function Home() {
 
     return (
         <div className='flex justify-center items-center h-screen'>
-            <div className='flex justify-center w-[90%] h-[500px]'>
-                <SideBar />
-                {display && <ChatBox socket={socket} />}
-            </div>
+            {
+                window.innerWidth > 1200 && (
+                    <div className='flex justify-center w-[90%] h-[500px]'>
+                        <SideBar />
+                        <ChatBox socket={socket} />
+                    </div>
+                )
+            }
+
+            {
+                true ? <SideBar /> : <ChatBox socket={socket} />
+            }
         </div>
     );
 }
