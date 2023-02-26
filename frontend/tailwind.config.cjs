@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         heading: "cursive",
       },
+      screens: {
+        mobile: { max: "550px" },
+      },
     },
   },
   plugins: [],
