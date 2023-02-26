@@ -9,7 +9,7 @@ import { User } from "../types";
 function Header() {
 
     const { state } = useContext(AuthContext);
-    const { chat } = useContext(ChatContext);
+    const { chat, hideChat } = useContext(ChatContext);
 
     const { user } = state;
     const currentUser = user as User;
@@ -18,7 +18,7 @@ function Header() {
 
     return (
         <div className='bg-[#3e3c61] flex justify-between items-center h-10 px-2'>
-            <IoArrowBackSharp cursor={"Pointer"} className="mobile:block hidden" />
+            <IoArrowBackSharp onClick={hideChat} cursor={"Pointer"} className="mobile:block hidden" />
             <p>{ isMyUsername ? chat.friendDetails.userName : chat?.friendDetails.friendUsername }</p>
 
             <div className='flex items-center'>
