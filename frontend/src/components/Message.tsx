@@ -95,7 +95,7 @@ function Message({ setFriend, friend, toggleShow }: Props) {
                 
                 <div className='mb-6 sticky mt-1 flex justify-between items-center'>
                     <h2 className='text-2xl'>Messages</h2>
-                    <RxHamburgerMenu onClick={toggleShow} size={23} cursor="pointer" />
+                    <RxHamburgerMenu className='mobile:block hidden' onClick={toggleShow} size={23} cursor="pointer" />
                 </div>
 
                 <form onSubmit={handleSearch}>
