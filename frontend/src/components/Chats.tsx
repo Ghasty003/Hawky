@@ -12,7 +12,7 @@ const Chats: React.FC<{friend: FriendProp }> = ({ friend }) => {
     const isEmpty = friend.friendDetails.friendImage === "";
 
     const { state } = useContext(AuthContext);
-    const { setChat, chatDiv } = useContext(ChatContext);
+    const { setChat, chatDiv, showChat } = useContext(ChatContext);
     const { setMessages, messages, setLoading } = useContext(MessageContext);
     const { friends } = useContext(FriendContext);
 
@@ -45,7 +45,7 @@ const Chats: React.FC<{friend: FriendProp }> = ({ friend }) => {
         req.send();
 
         if (window.innerWidth <= 1200) {
-            
+            showChat();
         }
     }
 

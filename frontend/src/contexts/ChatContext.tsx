@@ -9,15 +9,16 @@ const ChatContext = createContext<ChatContextType>(null!);
 export const ChatContextProvider: React.FC<ProviderProp> = ({ children }) => {
 
     const [chat, setChat] = useState<Friend>(null!);
+    const [render, setRender] = useState(true);
 
     const chatDiv = React.useRef<HTMLDivElement>(null!);
 
     const showChat = () => {
-        return console.log("show chat");
+        setRender(false);
     }
 
     return (
-        <ChatContext.Provider value={{ chat, setChat, chatDiv, showChat }}>
+        <ChatContext.Provider value={{ chat, setChat, chatDiv, render, showChat }}>
             { children }
         </ChatContext.Provider>
     )

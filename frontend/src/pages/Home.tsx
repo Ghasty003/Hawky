@@ -3,6 +3,7 @@ import { io, Socket } from 'socket.io-client';
 import ChatBox from '../components/ChatBox';
 import SideBar from '../components/SideBar';
 import AuthContext from '../contexts/AuthContext';
+import ChatContext from '../contexts/ChatContext';
 import MessageContext from '../contexts/MessageContext';
 import { User } from '../types';
 
@@ -13,6 +14,7 @@ function Home() {
     const socket = React.useRef<Socket>(null!);
 
     const { setMessages } = React.useContext(MessageContext);
+    const { render } = React.useContext(ChatContext);
 
     const [onlineUser, setOnlineUser] = React.useState([]);
 
@@ -65,7 +67,7 @@ function Home() {
             }
 
             {
-                true ? <SideBar /> : <ChatBox socket={socket} />
+                render ? <SideBar /> : <ChatBox socket={socket} />
             }
         </div>
     );
