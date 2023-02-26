@@ -17,8 +17,12 @@ export const ChatContextProvider: React.FC<ProviderProp> = ({ children }) => {
         setRender(false);
     }
 
+    const hideChat = () => {
+        setRender(true);
+    }
+
     return (
-        <ChatContext.Provider value={{ chat, setChat, chatDiv, render, showChat }}>
+        <ChatContext.Provider value={{ chat, setChat, chatDiv, render, showChat, hideChat }}>
             { children }
         </ChatContext.Provider>
     )
