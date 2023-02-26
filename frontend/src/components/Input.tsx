@@ -201,7 +201,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                                 </div>
                             </div>
 
-                            <button data-tooltip='send message' className='tooltip text-2xl text-primary mobile:text-lg mobile:mr-2 mr-5 rounded-md'><FiSend /></button>
+                            <button data-tooltip='send message' className='tooltip text-2xl text-primary mobile:text-lg mobile:mr-4 mr-5 rounded-md'><FiSend /></button>
                         </div>
                     </>
                 )
