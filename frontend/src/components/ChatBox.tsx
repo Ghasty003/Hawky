@@ -27,7 +27,7 @@ function ChatBox({ socket }: {socket: React.MutableRefObject<Socket> }) {
     
 
     return (
-        <div ref={Div} className='w-[50%] relative'>
+        <div ref={Div} className={`${window.innerWidth <= 1200 ? "w-[90%]" : "w-[50%]"} relative`}>
             <Header />
 
             <div className='custom-height bg-empty-chat overflow-auto'>
