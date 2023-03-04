@@ -20,30 +20,63 @@ This project includes:
 
 ## Contribution Prerequisites
 
+### Create an issue first before PR
+
 ### Install Node JS
 
 Refer to https://nodejs.org/en/ to install nodejs
 
-
-## Cloning and Running the Application in local
-
-Clone the project into local
-
-```bash
-git clone https://github.com/ghasty003/Hawky.git
-cd Hawky
-```
 Add your mongodb url in **.env**
 
-Install all the npm packages. Go into the project folder and type the following command to install all npm packages
+
+1. [Fork](https://github.com/ghasty003/Hawky/fork) the project. Click on the <a href="https://github.com/ghasty003/Hawky/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="15" width="15"></a> icon in the top right to get started
+2. Clone the project, you can use the following command:
+
+```bash
+git clone https://github.com/<your-github-username>/Hawky
+```
+
+3. Navigate to the project directory
+
+```bash
+cd Hawky
+```
+
+4. Install dependencies with npm install
 
 ```bash
 npm install
 ```
 
-In order to run the application Type the following command
+5. Run the project
 
 ```bash
 npm run dev
 ```
 
+## 🥂 After making a change
+
+1. Create a new branch
+
+```bash
+git checkout -b YourBranchName
+```
+
+2. Add it to staging area
+
+> NOTE: don't commit the package.json
+
+```bash
+git add <path to the file you worked on>
+```
+
+3. Commit your changes
+
+4. Push your changes
+
+```bash
+git push
+```
+## 🙏🏽 Support
+
+This project needs a star️ from you. Don't forget to leave a star✨
