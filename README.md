@@ -7,7 +7,7 @@ MERN stack Message sending web application with voice call and video call implem
 
 This project includes:
 
-1. Creating an CRUD api in nodejs, express and mongoose
+1. Creating a CRUD api in nodejs, express and mongoose
 2. JTW authentication
 3. Using React Functional Components alongside hooks
 4. Managing state using Context API
