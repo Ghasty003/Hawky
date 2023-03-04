@@ -1,6 +1,7 @@
 # Hawky
 MERN stack Message sending web application with voice call and video call implemented (in progress).
 
+<img src="https://user-images.githubusercontent.com/85039185/222900506-563ecb5f-bc26-4fe3-a0c2-6c826e8b7d5f.png" />
 
 ## About this project
 
