@@ -10,6 +10,7 @@ module.exports = {
         secondary: "#5b5d8d",
         "empty-chat": "#9fa8da",
         navbg: "rgba(0, 0, 0, .2)",
+        dodger: "#1e90ff",
       },
       fontFamily: {
         heading: "cursive",
