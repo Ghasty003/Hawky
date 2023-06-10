@@ -30,7 +30,7 @@ function Login() {
         setLoading(true);
 
         
-        const res = await fetch("https://hawky.onrender.com/api/user/login", {
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/user/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -70,7 +70,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
             image,
         }
     
-        const res = await fetch("https://hawky.onrender.com/api/message", {
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/message`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -144,7 +144,7 @@ function Input({ socket }: { socket: React.MutableRefObject<Socket> }) {
                     image: ""
                 };
         
-                const res = await fetch("https://hawky.onrender.com/api/message", {
+                const res = await fetch(`${import.meta.env.VITE_BASE_URL}/message`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
