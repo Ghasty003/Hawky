@@ -6,11 +6,24 @@ import groupchat from "../assets/groupchat.jpg";
 import chat from "../assets/chat.jpg";
 import audiochat from "../assets/audiochat.jpg";
 import { DivProps } from '../types';
+import Loading from '../components/Loading';
 
 function Div({headingText, text, img}: DivProps) {
+
+    const imgRef = React.useRef<HTMLImageElement>(null!);
+    const [isLoaded, setIsLoaded] = React.useState(false);
+
+    const handleLoad = () => {
+        setIsLoaded(imgRef.current.complete);
+    }
+
     return (
         <div className='flex items-center flex-wrap justify-around mb-20 even:flex-row-reverse'>
-            <img className='sm:w-[300px] w-72 rounded-md' src={img} alt="chat" />
+            {
+                !isLoaded && <Loading />
+            }
+            <img onLoad={handleLoad} ref={imgRef} loading='lazy' 
+                className={`${isLoaded ? "sm:w-[300px] w-72" : "w-0" } rounded-md`} src={img} alt="chat" />
             <div className='flex flex-col gap-6'>
                 <h2 className='font-heading text-2xl text-center sm:text-3xl sm:text-start'>{ headingText }</h2>
                 <p className='sm:text-lg sm:text-start text-base text-center'>{ text }</p>
