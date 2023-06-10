@@ -33,7 +33,7 @@ const Chats: React.FC<{friend: FriendProp }> = ({ friend }) => {
         setChat(friend as Friend);
 
         const req = new XMLHttpRequest();
-        req.open("GET", `${import.meta.env.VITE_BASE_URL}/message/` + userId + "/" + friendId);
+        req.open("GET", `https://hawky.onrender.com/api/message/` + userId + "/" + friendId);
         req.setRequestHeader("Authorization", `Bearer ${currentUser.token}`)
         req.addEventListener("progress", e => {
             // console.log((e.loaded / e.total) * 100 + "%");
@@ -74,7 +74,7 @@ const Chats: React.FC<{friend: FriendProp }> = ({ friend }) => {
 
     useEffect(() => {
         const getLastMessage = async () => {
-            const res = await fetch(`${import.meta.env.VITE_BASE_URL}/message/lastMessage/` + userId + "/" + friendId, {
+            const res = await fetch(`https://hawky.onrender.com/api/message/lastMessage/` + userId + "/" + friendId, {
                 headers: {
                     "Authorization": `Bearer ${currentUser.token}`
                 }
