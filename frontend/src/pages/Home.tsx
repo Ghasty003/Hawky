@@ -24,7 +24,7 @@ function Home() {
     const currentUser = user as User;
 
     React.useEffect(() => {
-        socket.current = io("https://hawky.onrender.com/");
+        socket.current = io("https://hawky.onrender.com");
         socket.current.emit("add-new-user", currentUser?.id);
         socket.current.on("get-online-users", (activeUsers) => {
             setOnlineUser(activeUsers);
@@ -34,6 +34,7 @@ function Home() {
 
     React.useEffect(() => {
         socket.current.on("receive-message", data => {
+            console.log(data)
           setMessages(prev => (
             [...prev, data]
           ))
